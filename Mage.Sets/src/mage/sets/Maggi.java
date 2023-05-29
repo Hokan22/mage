@@ -1,6 +1,7 @@
 package mage.sets;
 
 import mage.cards.ExpansionSet;
+import mage.constants.Rarity;
 import mage.constants.SetType;
 
 public final class Maggi extends ExpansionSet {
@@ -16,5 +17,7 @@ public final class Maggi extends ExpansionSet {
         this.blockName = "Maggi";
         this.hasBasicLands = false;
         this.hasBoosters = false;
+
+        cards.add(new SetCardInfo("Lolth, Queen of the Demonweb Pits", 1, Rarity.MYTHIC, mage.cards.l.LolthQueenOfTheDemonwebPits.class));
     }
 }
