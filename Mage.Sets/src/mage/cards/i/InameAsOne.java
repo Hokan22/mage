@@ -73,12 +73,12 @@ public final class InameAsOne extends CardImpl {
 
 class InameAsOneEffect extends OneShotEffect {
 
-    public InameAsOneEffect() {
+    InameAsOneEffect() {
         super(Outcome.Benefit);
         this.staticText = "you may exile it. If you do, return target Spirit permanent card from your graveyard to the battlefield";
     }
 
-    public InameAsOneEffect(final InameAsOneEffect effect) {
+    private InameAsOneEffect(final InameAsOneEffect effect) {
         super(effect);
     }
 

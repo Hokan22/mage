@@ -12,6 +12,8 @@ import mage.util.SubTypes;
 import mage.view.CardView;
 import mage.view.PermanentView;
 import org.apache.log4j.Logger;
+import static org.mage.card.arcane.ManaSymbols.getSizedManaSymbol;
+import static org.mage.card.arcane.ModernCardResourceLoader.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,8 +29,6 @@ import java.text.CharacterIterator;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
-import static org.mage.card.arcane.ManaSymbols.getSizedManaSymbol;
 
 
 /*
@@ -62,40 +62,6 @@ public class ModernCardRenderer extends CardRenderer {
     private static final Logger LOGGER = Logger.getLogger(ModernCardRenderer.class);
     private static final GlowText glowTextRenderer = new GlowText();
     public static final Color MANA_ICONS_TEXT_COLOR = Color.DARK_GRAY; // text color of missing mana icons in IMAGE render mode
-
-    ///////////////////////////////////////////////////////////////////////////
-    // Textures for modern frame cards
-    private static TexturePaint loadBackgroundTexture(String name) {
-        URL url = ModernCardRenderer.class.getResource("/cardrender/background_texture_" + name + ".png");
-        ImageIcon icon = new ImageIcon(url);
-        BufferedImage img = CardRendererUtils.toBufferedImage(icon.getImage());
-        return new TexturePaint(img, new Rectangle(0, 0, img.getWidth(), img.getHeight()));
-    }
-
-    private static BufferedImage loadBackgroundImage(String name) {
-        URL url = ModernCardRenderer.class.getResource("/cardrender/background_texture_" + name + ".png");
-        ImageIcon icon = new ImageIcon(url);
-        BufferedImage img = CardRendererUtils.toBufferedImage(icon.getImage());
-        return img;
-    }
-
-    private static BufferedImage loadFramePart(String name) {
-        URL url = ModernCardRenderer.class.getResource("/cardrender/" + name + ".png");
-        ImageIcon icon = new ImageIcon(url);
-        return CardRendererUtils.toBufferedImage(icon.getImage());
-    }
-
-    private static Font loadFont(String name) {
-        try (InputStream in = ModernCardRenderer.class.getResourceAsStream("/cardrender/" + name + ".ttf")) {
-            return Font.createFont(
-                    Font.TRUETYPE_FONT, in);
-        } catch (IOException e) {
-            LOGGER.info("Failed to load font `" + name + "`, couldn't find resource.");
-        } catch (FontFormatException e) {
-            LOGGER.info("Failed to load font `" + name + "`, bad format.");
-        }
-        return new Font("Arial", Font.PLAIN, 1);
-    }
 
     // public static final Font BASE_BELEREN_FONT = loadFont("beleren-bold");
 
@@ -964,6 +930,7 @@ public class ModernCardRenderer extends CardRenderer {
 
         // Replace "Legendary" in type line if there's not enough space
         if (g.getFontMetrics().stringWidth(types) > availableWidth) {
+            types = types.replace("Token", "T.");
             types = types.replace("Legendary", "L.");
         }
 
@@ -1096,20 +1063,8 @@ public class ModernCardRenderer extends CardRenderer {
             g.setFont(ptTextFont);
 
             // real PT info
-            MageInt currentPower;
-            MageInt currentToughness;
-            if (cardView.getOriginalCard() != null) {
-                // card
-                currentPower = cardView.getOriginalCard().getPower();
-                currentToughness = cardView.getOriginalCard().getToughness();
-            } else if (cardView.getOriginalToken() != null) {
-                // token
-                currentPower = cardView.getOriginalToken().getPower();
-                currentToughness = cardView.getOriginalToken().getToughness();
-            } else {
-                currentPower = null;
-                currentToughness = null;
-            }
+            MageInt currentPower = cardView.getOriginalPower();
+            MageInt currentToughness = cardView.getOriginalToughness();
 
             // draws
             int ptEmptySpace = (partBoxWidth - ptContentWidth) / 2;

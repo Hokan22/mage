@@ -30,11 +30,10 @@ import java.util.UUID;
  */
 public abstract class Emblem extends CommandObjectImpl {
 
-    private static final ObjectColor emptyColor = new ObjectColor();
     private static final ManaCosts emptyCost = new ManaCostsImpl<>();
 
     private UUID controllerId;
-    private MageObject sourceObject;
+    protected MageObject sourceObject; // can be null
     private boolean copy;
     private MageObject copyFrom; // copied card INFO (used to call original adjusters)
     private FrameStyle frameStyle;
@@ -44,7 +43,7 @@ public abstract class Emblem extends CommandObjectImpl {
         super(name);
     }
 
-    public Emblem(final Emblem emblem) {
+    protected Emblem(final Emblem emblem) {
         super(emblem);
         this.frameStyle = emblem.frameStyle;
         this.controllerId = emblem.controllerId;
@@ -63,7 +62,10 @@ public abstract class Emblem extends CommandObjectImpl {
         this.sourceObject = sourceObject;
 
         // choose set code due source
-        TokenInfo foundInfo = TokenRepository.instance.findPreferredTokenInfoForClass(this.getClass().getName(), sourceObject.getExpansionSetCode());
+        TokenInfo foundInfo = TokenRepository.instance.findPreferredTokenInfoForClass(
+                this.getClass().getName(),
+                this.sourceObject == null ? null : this.sourceObject.getExpansionSetCode()
+        );
         if (foundInfo != null) {
             this.setExpansionSetCode(foundInfo.getSetCode());
             this.setCardNumber("");
@@ -153,22 +155,27 @@ public abstract class Emblem extends CommandObjectImpl {
 
     @Override
     public ObjectColor getColor() {
-        return emptyColor;
+        return ObjectColor.COLORLESS;
     }
 
     @Override
     public ObjectColor getColor(Game game) {
-        return emptyColor;
+        return ObjectColor.COLORLESS;
     }
 
     @Override
     public ObjectColor getFrameColor(Game game) {
-        return emptyColor;
+        return ObjectColor.COLORLESS;
     }
 
     @Override
     public ManaCosts<ManaCost> getManaCost() {
         return emptyCost;
+    }
+
+    @Override
+    public void setManaCost(ManaCosts<ManaCost> costs) {
+        throw new UnsupportedOperationException("Unsupported operation");
     }
 
     @Override

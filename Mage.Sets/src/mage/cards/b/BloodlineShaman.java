@@ -49,13 +49,13 @@ public final class BloodlineShaman extends CardImpl {
 
 class BloodlineShamanEffect extends OneShotEffect {
 
-    public BloodlineShamanEffect() {
+    BloodlineShamanEffect() {
         super(Outcome.Benefit);
         this.staticText = "Choose a creature type. Reveal the top card of your library. If that card is a creature card of the chosen type, put it into your hand. "
                 + "Otherwise, put it into your graveyard";
     }
 
-    public BloodlineShamanEffect(final BloodlineShamanEffect effect) {
+    private BloodlineShamanEffect(final BloodlineShamanEffect effect) {
         super(effect);
     }
 
@@ -67,13 +67,19 @@ class BloodlineShamanEffect extends OneShotEffect {
     @Override
     public boolean apply(Game game, Ability source) {
         Player controller = game.getPlayer(source.getControllerId());
-        if (controller == null) { return false; }
+        if (controller == null) {
+            return false;
+        }
 
         MageObject sourceObject = game.getObject(source.getSourceId());
-        if (sourceObject == null) { return false; }
+        if (sourceObject == null) {
+            return false;
+        }
 
         Choice typeChoice = new ChoiceCreatureType(sourceObject);
-        if (!controller.choose(outcome, typeChoice, game)) { return false; }
+        if (!controller.choose(outcome, typeChoice, game)) {
+            return false;
+        }
 
         game.informPlayers(sourceObject.getLogName() + " chosen type: " + typeChoice.getChoice());
         FilterCard filterSubtype = new FilterCard();

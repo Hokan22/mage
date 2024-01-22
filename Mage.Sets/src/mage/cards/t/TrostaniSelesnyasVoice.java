@@ -65,7 +65,7 @@ class TrostaniSelesnyasVoiceTriggeredAbility extends TriggeredAbilityImpl {
         setTriggerPhrase("Whenever another creature enters the battlefield under your control, ");
     }
 
-    public TrostaniSelesnyasVoiceTriggeredAbility(TrostaniSelesnyasVoiceTriggeredAbility ability) {
+    private TrostaniSelesnyasVoiceTriggeredAbility(final TrostaniSelesnyasVoiceTriggeredAbility ability) {
         super(ability);
     }
 
@@ -99,12 +99,12 @@ class TrostaniSelesnyasVoiceTriggeredAbility extends TriggeredAbilityImpl {
 
 class TrostaniSelesnyasVoiceEffect extends OneShotEffect {
 
-    public TrostaniSelesnyasVoiceEffect() {
+    TrostaniSelesnyasVoiceEffect() {
         super(Outcome.GainLife);
         staticText = "you gain life equal to that creature's toughness";
     }
 
-    public TrostaniSelesnyasVoiceEffect(final TrostaniSelesnyasVoiceEffect effect) {
+    private TrostaniSelesnyasVoiceEffect(final TrostaniSelesnyasVoiceEffect effect) {
         super(effect);
     }
 

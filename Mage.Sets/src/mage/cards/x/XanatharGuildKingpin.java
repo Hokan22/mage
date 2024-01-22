@@ -67,7 +67,7 @@ public final class XanatharGuildKingpin extends CardImpl {
 
 class XanatharGuildKingpinRuleModifyingEffect extends ContinuousRuleModifyingEffectImpl {
 
-    public XanatharGuildKingpinRuleModifyingEffect() {
+    XanatharGuildKingpinRuleModifyingEffect() {
         super(Duration.EndOfTurn, Outcome.Benefit);
     }
 
@@ -78,11 +78,6 @@ class XanatharGuildKingpinRuleModifyingEffect extends ContinuousRuleModifyingEff
     @Override
     public XanatharGuildKingpinRuleModifyingEffect copy() {
         return new XanatharGuildKingpinRuleModifyingEffect(this);
-    }
-
-    @Override
-    public boolean apply(Game game, Ability source) {
-        return true;
     }
 
     @Override
@@ -109,7 +104,7 @@ class XanatharGuildKingpinRuleModifyingEffect extends ContinuousRuleModifyingEff
 
 class XanatharGuildKingpinSpendManaAsAnyColorOneShotEffect extends OneShotEffect {
 
-    public XanatharGuildKingpinSpendManaAsAnyColorOneShotEffect() {
+    XanatharGuildKingpinSpendManaAsAnyColorOneShotEffect() {
         super(Outcome.Benefit);
     }
 
@@ -142,7 +137,7 @@ class SpendManaAsAnyColorToCastTopOfLibraryTargetEffect extends AsThoughEffectIm
         super(AsThoughEffectType.SPEND_OTHER_MANA, Duration.EndOfTurn, Outcome.Benefit);
     }
 
-    public SpendManaAsAnyColorToCastTopOfLibraryTargetEffect(final SpendManaAsAnyColorToCastTopOfLibraryTargetEffect effect) {
+    private SpendManaAsAnyColorToCastTopOfLibraryTargetEffect(final SpendManaAsAnyColorToCastTopOfLibraryTargetEffect effect) {
         super(effect);
     }
 

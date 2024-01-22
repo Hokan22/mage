@@ -64,12 +64,12 @@ public final class NightshadeAssassin extends CardImpl {
 
 class NightshadeAssassinEffect extends OneShotEffect {
 
-    public NightshadeAssassinEffect() {
+    NightshadeAssassinEffect() {
         super(Outcome.UnboostCreature);
         staticText = "you may reveal X black cards in your hand. If you do, target creature gets -X/-X until end of turn";
     }
 
-    public NightshadeAssassinEffect(final NightshadeAssassinEffect effect) {
+    private NightshadeAssassinEffect(final NightshadeAssassinEffect effect) {
         super(effect);
     }
 

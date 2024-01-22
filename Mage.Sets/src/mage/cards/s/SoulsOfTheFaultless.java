@@ -56,7 +56,7 @@ class SoulsOfTheFaultlessTriggeredAbility extends TriggeredAbilityImpl {
         setTriggerPhrase("Whenever {this} is dealt combat damage, ");
     }
 
-    public SoulsOfTheFaultlessTriggeredAbility(final SoulsOfTheFaultlessTriggeredAbility effect) {
+    private SoulsOfTheFaultlessTriggeredAbility(final SoulsOfTheFaultlessTriggeredAbility effect) {
         super(effect);
     }
 
@@ -91,12 +91,12 @@ class SoulsOfTheFaultlessTriggeredAbility extends TriggeredAbilityImpl {
 
 class SoulsOfTheFaultlessEffect extends OneShotEffect {
 
-    public SoulsOfTheFaultlessEffect() {
+    SoulsOfTheFaultlessEffect() {
         super(Outcome.GainLife);
         staticText = "you gain that much life and attacking player loses that much life";
     }
 
-    public SoulsOfTheFaultlessEffect(final SoulsOfTheFaultlessEffect effect) {
+    private SoulsOfTheFaultlessEffect(final SoulsOfTheFaultlessEffect effect) {
         super(effect);
     }
 

@@ -71,7 +71,7 @@ class IsperiaTheInscrutableEffect extends OneShotEffect {
         staticText = "That player reveals their hand. If a card with the chosen name is revealed this way, search your library for a creature card with flying, reveal it, put it into your hand, then shuffle";
     }
 
-    public IsperiaTheInscrutableEffect(final IsperiaTheInscrutableEffect effect) {
+    private IsperiaTheInscrutableEffect(final IsperiaTheInscrutableEffect effect) {
         super(effect);
     }
 
@@ -83,7 +83,7 @@ class IsperiaTheInscrutableEffect extends OneShotEffect {
             player.revealCards(player.getLogName() + " hand", player.getHand(), game, true);
             for (Card card : player.getHand().getCards(game)) {
                 if (CardUtil.haveSameNames(card, cardName, game)) {
-                    return new SearchLibraryPutInHandEffect(new TargetCardInLibrary(filter), true, true).apply(game, source);
+                    return new SearchLibraryPutInHandEffect(new TargetCardInLibrary(filter), true).apply(game, source);
                 }
             }
             return true;

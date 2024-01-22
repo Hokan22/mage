@@ -65,12 +65,12 @@ public final class HazezonTamar extends CardImpl {
 
 class HazezonTamarEntersEffect extends OneShotEffect {
 
-    public HazezonTamarEntersEffect() {
+    HazezonTamarEntersEffect() {
         super(Outcome.PutCreatureInPlay);
         this.staticText = "create X 1/1 Sand Warrior creature tokens that are red, green, and white at the beginning of your next upkeep, where X is the number of lands you control at that time";
     }
 
-    public HazezonTamarEntersEffect(final HazezonTamarEntersEffect effect) {
+    private HazezonTamarEntersEffect(final HazezonTamarEntersEffect effect) {
         super(effect);
     }
 

@@ -8,7 +8,6 @@ import mage.abilities.common.SpellCastOpponentTriggeredAbility;
 import mage.abilities.condition.common.SourceMatchesFilterCondition;
 import mage.abilities.decorator.ConditionalInterveningIfTriggeredAbility;
 import mage.abilities.effects.ContinuousEffectImpl;
-import mage.abilities.effects.common.continuous.SourceEffect;
 import mage.abilities.keyword.ProtectionAbility;
 import mage.cards.CardImpl;
 import mage.cards.CardSetInfo;
@@ -46,15 +45,15 @@ public final class OpalTitan extends CardImpl {
     }
 }
 
-class OpalTitanBecomesCreatureEffect extends ContinuousEffectImpl implements SourceEffect {
+class OpalTitanBecomesCreatureEffect extends ContinuousEffectImpl {
 
-    public OpalTitanBecomesCreatureEffect() {
+    OpalTitanBecomesCreatureEffect() {
         super(Duration.WhileOnBattlefield, Outcome.BecomeCreature);
         staticText = "{this} becomes a 4/4 Giant creature with protection from each of that spell's colors.";
         this.addDependencyType(DependencyType.BecomeCreature);
     }
 
-    public OpalTitanBecomesCreatureEffect(final OpalTitanBecomesCreatureEffect effect) {
+    private OpalTitanBecomesCreatureEffect(final OpalTitanBecomesCreatureEffect effect) {
         super(effect);
     }
 

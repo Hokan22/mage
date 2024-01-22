@@ -57,12 +57,12 @@ public final class WitchEngine extends CardImpl {
 
 class WitchEngineEffect extends ContinuousEffectImpl {
 
-    public WitchEngineEffect() {
+    WitchEngineEffect() {
         super(Duration.Custom, Layer.ControlChangingEffects_2, SubLayer.NA, Outcome.GainControl);
         staticText = "target opponent gains control of {this}";
     }
 
-    public WitchEngineEffect(final WitchEngineEffect effect) {
+    private WitchEngineEffect(final WitchEngineEffect effect) {
         super(effect);
     }
 

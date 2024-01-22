@@ -46,23 +46,18 @@ public final class Stranglehold extends CardImpl {
 
 class OpponentsCantSearchLibarariesEffect extends ContinuousRuleModifyingEffectImpl {
 
-    public OpponentsCantSearchLibarariesEffect() {
+    OpponentsCantSearchLibarariesEffect() {
         super(Duration.WhileOnBattlefield, Outcome.Benefit, true, false);
         staticText = "Your opponents can't search libraries";
     }
 
-    public OpponentsCantSearchLibarariesEffect(final OpponentsCantSearchLibarariesEffect effect) {
+    private OpponentsCantSearchLibarariesEffect(final OpponentsCantSearchLibarariesEffect effect) {
         super(effect);
     }
 
     @Override
     public OpponentsCantSearchLibarariesEffect copy() {
         return new OpponentsCantSearchLibarariesEffect(this);
-    }
-
-    @Override
-    public boolean apply(Game game, Ability source) {
-        return true;
     }
 
     @Override
@@ -88,23 +83,18 @@ class OpponentsCantSearchLibarariesEffect extends ContinuousRuleModifyingEffectI
 
 class StrangleholdSkipExtraTurnsEffect extends ReplacementEffectImpl {
 
-    public StrangleholdSkipExtraTurnsEffect() {
+    StrangleholdSkipExtraTurnsEffect() {
         super(Duration.WhileOnBattlefield, Outcome.Detriment);
         staticText = "If an opponent would begin an extra turn, that player skips that turn instead";
     }
 
-    public StrangleholdSkipExtraTurnsEffect(final StrangleholdSkipExtraTurnsEffect effect) {
+    private StrangleholdSkipExtraTurnsEffect(final StrangleholdSkipExtraTurnsEffect effect) {
         super(effect);
     }
 
     @Override
     public StrangleholdSkipExtraTurnsEffect copy() {
         return new StrangleholdSkipExtraTurnsEffect(this);
-    }
-
-    @Override
-    public boolean apply(Game game, Ability source) {
-        return true;
     }
 
     @Override

@@ -76,7 +76,7 @@ public final class TourachsGate extends CardImpl {
 
         // Sacrifice a Thrull: Put three time counters on Tourach's Gate.
         this.addAbility(new SimpleActivatedAbility(Zone.BATTLEFIELD, new AddCountersSourceEffect(CounterType.TIME.createInstance(3)), 
-                new SacrificeTargetCost(new TargetControlledCreaturePermanent(1,1, filterThrull, true))));
+                new SacrificeTargetCost(filterThrull)));
         
         // At the beginning of your upkeep, remove a time counter from Tourach's Gate. If there are no time counters on Tourach's Gate, sacrifice it.
         this.addAbility(new BeginningOfUpkeepTriggeredAbility(new TourachsGateUpkeepEffect(), TargetController.YOU, false));
@@ -105,7 +105,7 @@ class TourachsGateUpkeepEffect extends OneShotEffect {
         staticText = "remove a time counter from {this}. If there are no time counters on {this}, sacrifice it";
     }
 
-    TourachsGateUpkeepEffect(final TourachsGateUpkeepEffect effect) {
+    private TourachsGateUpkeepEffect(final TourachsGateUpkeepEffect effect) {
         super(effect);
     }
 

@@ -18,7 +18,7 @@ public final class OgreToken extends TokenImpl {
         toughness = new MageInt(3);
     }
 
-    public OgreToken(final OgreToken token) {
+    private OgreToken(final OgreToken token) {
         super(token);
     }
 

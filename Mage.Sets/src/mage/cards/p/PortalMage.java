@@ -66,12 +66,12 @@ public final class PortalMage extends CardImpl {
 
 class PortalMageEffect extends OneShotEffect {
 
-    public PortalMageEffect() {
+    PortalMageEffect() {
         super(Outcome.Benefit);
         this.staticText = "you may reselect which player or planeswalker target attacking creature is attacking";
     }
 
-    public PortalMageEffect(final PortalMageEffect effect) {
+    private PortalMageEffect(final PortalMageEffect effect) {
         super(effect);
     }
 

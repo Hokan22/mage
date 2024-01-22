@@ -57,12 +57,12 @@ public final class ServantOfTheScale extends CardImpl {
 
 class ServantOfTheScaleEffect extends OneShotEffect {
 
-    public ServantOfTheScaleEffect() {
+    ServantOfTheScaleEffect() {
         super(Outcome.BoostCreature);
         this.staticText = "put X +1/+1 counters on target creature you control, where X is the number of +1/+1 counters on {this}";
     }
 
-    public ServantOfTheScaleEffect(final ServantOfTheScaleEffect effect) {
+    private ServantOfTheScaleEffect(final ServantOfTheScaleEffect effect) {
         super(effect);
     }
 

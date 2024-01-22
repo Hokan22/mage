@@ -54,7 +54,7 @@ class EssenceSliverTriggeredAbility extends TriggeredAbilityImpl {
         setTriggerPhrase("Whenever a Sliver deals damage, ");
     }
 
-    public EssenceSliverTriggeredAbility(final EssenceSliverTriggeredAbility ability) {
+    private EssenceSliverTriggeredAbility(final EssenceSliverTriggeredAbility ability) {
         super(ability);
     }
 
@@ -87,12 +87,12 @@ class EssenceSliverTriggeredAbility extends TriggeredAbilityImpl {
 
 class EssenceSliverEffect extends OneShotEffect {
 
-    public EssenceSliverEffect() {
+    EssenceSliverEffect() {
         super(Outcome.GainLife);
         this.staticText = "its controller gains that much life";
     }
 
-    public EssenceSliverEffect(final EssenceSliverEffect effect) {
+    private EssenceSliverEffect(final EssenceSliverEffect effect) {
         super(effect);
     }
 

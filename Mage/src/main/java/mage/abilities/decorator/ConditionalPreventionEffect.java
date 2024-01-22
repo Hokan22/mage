@@ -43,7 +43,7 @@ public class ConditionalPreventionEffect extends PreventionEffectImpl {
         this.staticText = text;
     }
 
-    public ConditionalPreventionEffect(final ConditionalPreventionEffect effect) {
+    protected ConditionalPreventionEffect(final ConditionalPreventionEffect effect) {
         super(effect);
         this.effect = (PreventionEffect) effect.effect.copy();
         if (effect.otherwiseEffect != null) {
@@ -94,11 +94,6 @@ public class ConditionalPreventionEffect extends PreventionEffectImpl {
             this.discard();
         }
 
-        return false;
-    }
-
-    @Override
-    public boolean apply(Game game, Ability source) {
         return false;
     }
 

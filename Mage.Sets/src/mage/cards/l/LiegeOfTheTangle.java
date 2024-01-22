@@ -59,12 +59,12 @@ public final class LiegeOfTheTangle extends CardImpl {
 
 class LiegeOfTheTangleEffect extends ContinuousEffectImpl {
 
-    public LiegeOfTheTangleEffect() {
+    LiegeOfTheTangleEffect() {
         super(Duration.EndOfGame, Outcome.BecomeCreature);
         staticText = "each of those lands is an 8/8 green Elemental creature for as long as it has an awakening counter on it. They're still lands";
     }
 
-    public LiegeOfTheTangleEffect(final LiegeOfTheTangleEffect effect) {
+    private LiegeOfTheTangleEffect(final LiegeOfTheTangleEffect effect) {
         super(effect);
     }
 

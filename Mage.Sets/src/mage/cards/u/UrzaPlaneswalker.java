@@ -95,12 +95,12 @@ public final class UrzaPlaneswalker extends MeldCard {
 
 class UrzaPlaneswalkerEffect extends ContinuousEffectImpl {
 
-    public UrzaPlaneswalkerEffect() {
+    UrzaPlaneswalkerEffect() {
         super(Duration.WhileOnBattlefield, Layer.RulesEffects, SubLayer.NA, Outcome.Benefit);
         staticText = "once during each of your turns, you may activate an additional loyalty ability of {this}";
     }
 
-    public UrzaPlaneswalkerEffect(final UrzaPlaneswalkerEffect effect) {
+    private UrzaPlaneswalkerEffect(final UrzaPlaneswalkerEffect effect) {
         super(effect);
     }
 

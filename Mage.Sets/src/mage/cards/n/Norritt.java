@@ -69,7 +69,7 @@ public final class Norritt extends CardImpl {
                 + "Activate only before attackers are declared.");
         ability2.addEffect(new NorrittDelayedDestroyEffect());
         ability2.addTarget(new TargetCreaturePermanent(filterCreature));
-        this.addAbility(ability2, new AttackedThisTurnWatcher());
+        this.addAbility(ability2);
 
     }
 
@@ -85,12 +85,12 @@ public final class Norritt extends CardImpl {
 
 class NorrittDelayedDestroyEffect extends OneShotEffect {
 
-    public NorrittDelayedDestroyEffect() {
+    NorrittDelayedDestroyEffect() {
         super(Outcome.Detriment);
         this.staticText = "If it doesn't, destroy it at the beginning of the next end step";
     }
 
-    public NorrittDelayedDestroyEffect(final NorrittDelayedDestroyEffect effect) {
+    private NorrittDelayedDestroyEffect(final NorrittDelayedDestroyEffect effect) {
         super(effect);
     }
 

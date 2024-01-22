@@ -68,11 +68,11 @@ public final class MathasFiendSeeker extends CardImpl {
 
 class MathasFiendSeekerGainAbilityEffect extends GainAbilityTargetEffect {
 
-    public MathasFiendSeekerGainAbilityEffect(Ability ability, Duration duration, String rule) {
+    MathasFiendSeekerGainAbilityEffect(Ability ability, Duration duration, String rule) {
         super(ability, duration, rule);
     }
 
-    public MathasFiendSeekerGainAbilityEffect(final MathasFiendSeekerGainAbilityEffect effect) {
+    private MathasFiendSeekerGainAbilityEffect(final MathasFiendSeekerGainAbilityEffect effect) {
         super(effect);
     }
 
@@ -93,12 +93,12 @@ class MathasFiendSeekerGainAbilityEffect extends GainAbilityTargetEffect {
 
 class OpponentsGainLifeEffect extends OneShotEffect {
 
-    public OpponentsGainLifeEffect() {
+    OpponentsGainLifeEffect() {
         super(Outcome.GainLife);
         staticText = "and gains 2 life.";
     }
 
-    public OpponentsGainLifeEffect(final OpponentsGainLifeEffect effect) {
+    private OpponentsGainLifeEffect(final OpponentsGainLifeEffect effect) {
         super(effect);
     }
 

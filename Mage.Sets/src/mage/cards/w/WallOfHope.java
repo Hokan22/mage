@@ -54,7 +54,7 @@ class WallOfHopeTriggeredAbility extends TriggeredAbilityImpl {
         setTriggerPhrase("Whenever {this} is dealt damage, ");
     }
 
-    public WallOfHopeTriggeredAbility(final WallOfHopeTriggeredAbility effect) {
+    private WallOfHopeTriggeredAbility(final WallOfHopeTriggeredAbility effect) {
         super(effect);
     }
 
@@ -80,12 +80,12 @@ class WallOfHopeTriggeredAbility extends TriggeredAbilityImpl {
 
 class WallOfHopeGainLifeEffect extends OneShotEffect {
 
-    public WallOfHopeGainLifeEffect() {
+    WallOfHopeGainLifeEffect() {
         super(Outcome.GainLife);
         staticText = "you gain that much life";
     }
 
-    public WallOfHopeGainLifeEffect(final WallOfHopeGainLifeEffect effect) {
+    private WallOfHopeGainLifeEffect(final WallOfHopeGainLifeEffect effect) {
         super(effect);
     }
 

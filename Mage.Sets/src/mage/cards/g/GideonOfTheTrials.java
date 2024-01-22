@@ -35,14 +35,14 @@ public final class GideonOfTheTrials extends CardImpl {
         this.setStartingLoyalty(3);
 
         // +1: Until your next turn, prevent all damage target permanent would deal.
-        Effect effect = new PreventDamageByTargetEffect(Duration.UntilYourNextTurn);
+        Effect effect = new PreventDamageByTargetEffect(Duration.UntilYourNextTurn, false);
         effect.setText("Until your next turn, prevent all damage target permanent would deal");
         LoyaltyAbility ability = new LoyaltyAbility(effect, 1);
         ability.addTarget(new TargetPermanent());
         this.addAbility(ability);
 
         // 0: Until end of turn, Gideon of the Trials becomes a 4/4 Human Soldier creature with indestructible that's still a planeswalker. Prevent all damage that would be dealt to him this turn.
-        ability = new LoyaltyAbility(new BecomesCreatureSourceEffect(new GideonOfTheTrialsToken(), "planeswalker", Duration.EndOfTurn), 0);
+        ability = new LoyaltyAbility(new BecomesCreatureSourceEffect(new GideonOfTheTrialsToken(), CardType.PLANESWALKER, Duration.EndOfTurn), 0);
         effect = new PreventAllDamageToSourceEffect(Duration.EndOfTurn);
         effect.setText("Prevent all damage that would be dealt to him this turn");
         ability.addEffect(effect);
@@ -74,7 +74,7 @@ class GideonOfTheTrialsToken extends TokenImpl {
         toughness = new MageInt(4);
         this.addAbility(IndestructibleAbility.getInstance());
     }
-    public GideonOfTheTrialsToken(final GideonOfTheTrialsToken token) {
+    private GideonOfTheTrialsToken(final GideonOfTheTrialsToken token) {
         super(token);
     }
 

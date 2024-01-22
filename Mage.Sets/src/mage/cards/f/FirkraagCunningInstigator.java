@@ -85,9 +85,8 @@ enum FirkraagCunningInstigatorPredicate implements Predicate<Permanent> {
         return game
                 .getCombat()
                 .getCreaturesForcedToAttack()
-                .values()
+                .keySet()
                 .stream()
-                .flatMap(Collection::stream)
                 .anyMatch(input.getId()::equals);
     }
 }
@@ -126,6 +125,7 @@ class FirkraagCunningInstigatorTriggeredAbility extends TriggeredAbilityImpl {
             );
             filter.add(new ControllerIdPredicate(event.getTargetId()));
             this.addTarget(new TargetPermanent(filter));
+            return true;
         }
         return false;
     }

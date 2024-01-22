@@ -55,12 +55,12 @@ public final class RagMan extends CardImpl {
 
 class RagManDiscardEffect extends OneShotEffect {
 
-    public RagManDiscardEffect() {
+    RagManDiscardEffect() {
         super(Outcome.Discard);
         this.staticText = "and discards a creature card at random";
     }
 
-    public RagManDiscardEffect(final RagManDiscardEffect effect) {
+    private RagManDiscardEffect(final RagManDiscardEffect effect) {
         super(effect);
     }
 

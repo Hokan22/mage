@@ -40,12 +40,12 @@ public final class BileBlight extends CardImpl {
 
 class BileBlightEffect extends BoostAllEffect {
 
-    public BileBlightEffect() {
+    BileBlightEffect() {
         super(-3, -3, Duration.EndOfTurn);
         staticText = "Target creature and all other creatures with the same name as that creature get -3/-3 until end of turn";
     }
 
-    public BileBlightEffect(final BileBlightEffect effect) {
+    private BileBlightEffect(final BileBlightEffect effect) {
         super(effect);
     }
 

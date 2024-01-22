@@ -58,7 +58,7 @@ public final class EtherealValkyrie extends CardImpl {
 
 class EtherealValkyrieEffect extends OneShotEffect {
 
-    public EtherealValkyrieEffect() {
+    EtherealValkyrieEffect() {
         super(Outcome.Benefit);
         this.staticText = "draw a card, then exile a card from your hand face down. " +
                 "It becomes foretold. " +
@@ -121,7 +121,7 @@ class EtherealValkyrieEffect extends OneShotEffect {
             game.getState().setValue(exileCard.getMainCard().getId().toString() + "Foretell Cost", creatureCost);
             game.getState().setValue(exileCard.getMainCard().getId().toString() + "Foretell Split Cost", spellCost);
             foretellAbility = new ForetellAbility(exileCard, creatureCost, spellCost);
-        } else if (!exileCard.isLand()){
+        } else if (!exileCard.isLand(game)){
             // normal card
             String costText = CardUtil.reduceCost(exileCard.getManaCost(), 2).getText();
             game.getState().setValue(exileCard.getId().toString() + "Foretell Cost", costText);

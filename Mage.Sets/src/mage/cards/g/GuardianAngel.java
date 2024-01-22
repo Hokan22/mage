@@ -50,12 +50,12 @@ public final class GuardianAngel extends CardImpl {
 
 class GuardianAngelEffect extends OneShotEffect {
 
-    public GuardianAngelEffect() {
+    GuardianAngelEffect() {
         super(Outcome.Benefit);
         this.staticText = "Prevent the next X damage that would be dealt to any target this turn. Until end of turn, you may pay {1} any time you could cast an instant. If you do, prevent the next 1 damage that would be dealt to that permanent or player this turn";
     }
 
-    public GuardianAngelEffect(final GuardianAngelEffect effect) {
+    private GuardianAngelEffect(final GuardianAngelEffect effect) {
         super(effect);
     }
 
@@ -103,7 +103,7 @@ class GuardianAngelAction extends SpecialAction {
         this.addEffect(new PreventDamageToTargetEffect(Duration.EndOfTurn, 1));
     }
 
-    GuardianAngelAction(final GuardianAngelAction ability) {
+    private GuardianAngelAction(final GuardianAngelAction ability) {
         super(ability);
     }
 
@@ -121,7 +121,7 @@ class GuardianAngelDelayedTriggeredAbility extends DelayedTriggeredAbility {
         this.setRuleVisible(false);
     }
 
-    GuardianAngelDelayedTriggeredAbility(GuardianAngelDelayedTriggeredAbility ability) {
+    private GuardianAngelDelayedTriggeredAbility(final GuardianAngelDelayedTriggeredAbility ability) {
         super(ability);
     }
 

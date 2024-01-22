@@ -108,7 +108,7 @@ public class LookLibraryAndPickControllerEffect extends LookLibraryControllerEff
         this.upTo = (numberToPick > 1);
     }
 
-    public LookLibraryAndPickControllerEffect(final LookLibraryAndPickControllerEffect effect) {
+    protected LookLibraryAndPickControllerEffect(final LookLibraryAndPickControllerEffect effect) {
         super(effect);
         this.numberToPick = effect.numberToPick;
         this.putPickedCards = effect.putPickedCards;
@@ -201,6 +201,8 @@ public class LookLibraryAndPickControllerEffect extends LookLibraryControllerEff
         if (revealPickedCards) {
             sb.append("and put ");
             sb.append(plural ? "them " : "it ");
+        } else if (putPickedCards == PutCards.TOP_ANY && (numberOfCards instanceof StaticValue)) {
+            sb.append("back ");
         }
         sb.append(putPickedCards.getMessage(false, plural));
 

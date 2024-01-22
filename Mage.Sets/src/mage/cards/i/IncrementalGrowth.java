@@ -58,14 +58,14 @@ public final class IncrementalGrowth extends CardImpl {
 
 class IncrementalGrowthEffect extends OneShotEffect {
 
-    public IncrementalGrowthEffect() {
+    IncrementalGrowthEffect() {
         super(Outcome.Benefit);
         this.staticText = "Put a +1/+1 counter on target creature, "
                 + "two +1/+1 counters on another target creature, "
                 + "and three +1/+1 counters on a third target creature";
     }
 
-    public IncrementalGrowthEffect(final IncrementalGrowthEffect effect) {
+    private IncrementalGrowthEffect(final IncrementalGrowthEffect effect) {
         super(effect);
     }
 

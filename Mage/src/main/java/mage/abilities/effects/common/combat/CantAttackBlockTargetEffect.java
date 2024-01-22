@@ -16,7 +16,7 @@ public class CantAttackBlockTargetEffect extends RestrictionEffect {
         super(duration);
     }
 
-    public CantAttackBlockTargetEffect(final CantAttackBlockTargetEffect effect) {
+    protected CantAttackBlockTargetEffect(final CantAttackBlockTargetEffect effect) {
         super(effect);
     }
 
@@ -45,12 +45,7 @@ public class CantAttackBlockTargetEffect extends RestrictionEffect {
         if (staticText != null && !staticText.isEmpty()) {
             return staticText;
         }
-        StringBuilder sb = new StringBuilder("target ");
-        if (mode.getTargets().isEmpty()) {
-            sb.append("creature");
-        } else {
-            sb.append(mode.getTargets().get(0).getTargetName());
-        }
+        StringBuilder sb = new StringBuilder(getTargetPointer().describeTargets(mode.getTargets(), "that creature"));
         sb.append(" can't attack or block ");
         if (duration == Duration.EndOfTurn) {
             sb.append("this turn");

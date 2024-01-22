@@ -30,6 +30,7 @@ public enum ScryfallImageSource implements CardImageSource {
     private final Map<CardLanguage, String> languageAliases;
     private CardLanguage currentLanguage = CardLanguage.ENGLISH; // working language
     private final Map<CardDownloadData, String> preparedUrls = new HashMap<>();
+    private final int DOWNLOAD_TIMEOUT_MS = 100;
 
     ScryfallImageSource() {
         // LANGUAGES
@@ -68,7 +69,7 @@ public enum ScryfallImageSource implements CardImageSource {
 
         // tokens support only direct links
         if (isToken) {
-            baseUrl = ScryfallImageSupportTokens.findTokenLink(card.getSet(), card.getName(), card.getType());
+            baseUrl = ScryfallImageSupportTokens.findTokenLink(card.getSet(), card.getName(), card.getImageNumber());
             alternativeUrl = null;
         }
 
@@ -80,7 +81,7 @@ public enum ScryfallImageSource implements CardImageSource {
             String link = ScryfallImageSupportCards.findDirectDownloadLink(card.getSet(), card.getName(), card.getCollectorId());
             if (link != null) {
                 if (ScryfallImageSupportCards.isApiLink(link)) {
-                    // api
+                    // api link - must prepare direct link
                     baseUrl = link + localizedCode + "?format=image";
                     alternativeUrl = link + defaultCode + "?format=image";
                     // workaround to use cards without english images (some promos or special cards)
@@ -88,7 +89,7 @@ public enum ScryfallImageSource implements CardImageSource {
                         alternativeUrl = alternativeUrl.replace("/en?format=image", "?format=image");
                     }
                 } else {
-                    // image
+                    // direct link to image
                     baseUrl = link;
                 }
             }
@@ -170,6 +171,7 @@ public enum ScryfallImageSource implements CardImageSource {
         String jsonUrl = null;
         for (String currentUrl : needUrls) {
             // connect to Scryfall API
+            waitBeforeRequest();
             URL cardUrl = new URL(currentUrl);
             URLConnection request = (proxy == null ? cardUrl.openConnection() : cardUrl.openConnection(proxy));
             request.connect();
@@ -321,7 +323,16 @@ public enum ScryfallImageSource implements CardImageSource {
 
     @Override
     public void doPause(String httpImageUrl) {
+        waitBeforeRequest();
+    }
 
+    private void waitBeforeRequest() {
+        // scryfall recommends 50-100 ms timeout per each request to API to work under a rate limit
+        // possible error: 429 Too Many Requests
+        try {
+            Thread.sleep(DOWNLOAD_TIMEOUT_MS);
+        } catch (InterruptedException ignored) {
+        }
     }
 
     private String formatSetName(String setName, boolean isToken) {

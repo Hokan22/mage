@@ -51,7 +51,7 @@ public final class GideonJura extends CardImpl {
         this.addAbility(ability2);
 
         // 0: Until end of turn, Gideon Jura becomes a 6/6 Human Soldier creature that's still a planeswalker. Prevent all damage that would be dealt to him this turn.
-        LoyaltyAbility ability3 = new LoyaltyAbility(new BecomesCreatureSourceEffect(new GideonJuraToken(), "planeswalker", Duration.EndOfTurn), 0);
+        LoyaltyAbility ability3 = new LoyaltyAbility(new BecomesCreatureSourceEffect(new GideonJuraToken(), CardType.PLANESWALKER, Duration.EndOfTurn), 0);
         Effect effect = new PreventAllDamageToSourceEffect(Duration.EndOfTurn);
         effect.setText("Prevent all damage that would be dealt to him this turn");
         ability3.addEffect(effect);
@@ -80,7 +80,7 @@ class GideonJuraToken extends TokenImpl {
         toughness = new MageInt(6);
     }
 
-    public GideonJuraToken(final GideonJuraToken token) {
+    private GideonJuraToken(final GideonJuraToken token) {
         super(token);
     }
 
@@ -99,7 +99,7 @@ class GideonJuraEffect extends RequirementEffect {
         staticText = "During target opponent's next turn, creatures that player controls attack {this} if able";
     }
 
-    public GideonJuraEffect(final GideonJuraEffect effect) {
+    private GideonJuraEffect(final GideonJuraEffect effect) {
         super(effect);
         this.creatingPermanent = effect.creatingPermanent;
     }

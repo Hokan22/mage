@@ -40,12 +40,12 @@ public final class PlaneswalkersFury extends CardImpl {
 
 class PlaneswalkersFuryEffect extends OneShotEffect {
 
-    public PlaneswalkersFuryEffect() {
+    PlaneswalkersFuryEffect() {
         super(Outcome.Damage);
         staticText = "Target opponent reveals a card at random from their hand. Planeswalker's Fury deals damage equal to that card's mana value to that player";
     }
 
-    public PlaneswalkersFuryEffect(final PlaneswalkersFuryEffect effect) {
+    private PlaneswalkersFuryEffect(final PlaneswalkersFuryEffect effect) {
         super(effect);
     }
 

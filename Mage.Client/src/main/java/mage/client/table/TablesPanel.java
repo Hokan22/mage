@@ -94,14 +94,13 @@ public class TablesPanel extends javax.swing.JPanel {
             .addColumn(5, 180, String.class, "Game Type",null)
             .addColumn(6, 80, String.class, "Info",
                     "<b>Match / Tournament settings</b>"
-                            + "<br>Wins = Number of games you need to wins to win a match"  
-                            + "<br>Time = Time limit per player"  
-                            + "<br>FM: = Numbers of freee mulligans"
-                            + "<br>Constr.: = Construction time for limited tournament formats"                              
-                            + "<br>RB = Rollback allowed"                            
-                            + "<br>PC = Planechase active"                            
+                            + "<br>Wins = Number of games you need to wins to win a match"
+                            + "<br>Time = Time limit per player"
+                            + "<br>Constr.: = Construction time for limited tournament formats"
+                            + "<br>RB = Rollbacks allowed"
                             + "<br>SP = Spectators allowed"
                             + "<br>Rng: Range of visibility for multiplayer matches"
+                            + "<br>Custom options: Nonstandard options, hover for details"
             )
             .addColumn(7, 120, String.class, "Status",
                     "<b>Table status</b><br>"
@@ -579,6 +578,9 @@ public class TablesPanel extends javax.swing.JPanel {
         table.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                if (!SwingUtilities.isLeftMouseButton(e)) {
+                    return;
+                }
                 int modelRow = TablesUtil.getSelectedModelRow(table);
                 if (e.getClickCount() == 2 && modelRow != -1) {
                     action.actionPerformed(new ActionEvent(table, ActionEvent.ACTION_PERFORMED, TablesUtil.getSearchIdFromTable(table, modelRow)));
@@ -823,7 +825,7 @@ public class TablesPanel extends javax.swing.JPanel {
             }
         }
         stopTasks();
-        this.chatPanelMain.getUserChatPanel().disconnect();
+        this.chatPanelMain.cleanUp();;
 
         Component c = this.getParent();
         while (c != null && !(c instanceof TablesPane)) {
@@ -936,7 +938,7 @@ public class TablesPanel extends javax.swing.JPanel {
 
         // Hide games of ignored players
         java.util.List<RowFilter<Object, Object>> ignoreListFilterList = new ArrayList<>();
-        String serverAddress = SessionHandler.getSession().getServerHostname().orElse("");
+        String serverAddress = SessionHandler.getSession().getServerHost();
         final Set<String> ignoreListCopy = IgnoreList.getIgnoredUsers(serverAddress);
         if (!ignoreListCopy.isEmpty()) {
             ignoreListFilterList.add(new RowFilter<Object, Object>() {
@@ -1708,12 +1710,13 @@ public class TablesPanel extends javax.swing.JPanel {
             options.setRange(RangeOfInfluence.ONE);
             options.setWinsNeeded(2);
             options.setMatchTimeLimit(MatchTimeLimit.NONE);
+            options.setMatchBufferTime(MatchBufferTime.NONE);
             options.setFreeMulligans(2);
             options.setSkillLevel(SkillLevel.CASUAL);
             options.setRollbackTurnsAllowed(true);
             options.setQuitRatio(100);
             options.setMinimumRating(0);
-            String serverAddress = SessionHandler.getSession().getServerHostname().orElse("");
+            String serverAddress = SessionHandler.getSession().getServerHost();
             options.setBannedUsers(IgnoreList.getIgnoredUsers(serverAddress));
             table = SessionHandler.createTable(roomId, options);
 

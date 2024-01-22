@@ -9,10 +9,7 @@ import mage.abilities.common.SimpleActivatedAbility;
 import mage.abilities.common.SimpleStaticAbility;
 import mage.abilities.costs.mana.ManaCostsImpl;
 import mage.abilities.effects.Effect;
-import mage.abilities.effects.common.DamageTargetEffect;
-import mage.abilities.effects.common.DestroyTargetEffect;
-import mage.abilities.effects.common.ReturnFromExileEffect;
-import mage.abilities.effects.common.ReturnFromGraveyardToHandTargetEffect;
+import mage.abilities.effects.common.*;
 import mage.abilities.effects.common.cost.SpellsCostIncreasingAllEffect;
 import mage.abilities.effects.common.cost.SpellsCostReductionAllEffect;
 import mage.abilities.effects.common.search.SearchLibraryPutInHandEffect;
@@ -35,7 +32,7 @@ import mage.server.managers.ConfigSettings;
 import mage.server.util.ConfigFactory;
 import mage.server.util.ConfigWrapper;
 import mage.server.util.PluginClassLoader;
-import mage.server.util.SystemUtil;
+import mage.utils.SystemUtil;
 import mage.server.util.config.GamePlugin;
 import mage.server.util.config.Plugin;
 import mage.target.TargetPermanent;
@@ -520,6 +517,21 @@ public abstract class MageTestPlayerBase {
     }
 
     /**
+     * Add target transform ability that can be called by text "target transform"
+     *
+     * @param controller
+     */
+    protected void addCustomEffect_TransformTarget(TestPlayer controller) {
+        Ability ability = new SimpleActivatedAbility(new TransformTargetEffect().setText("target transform"), new ManaCostsImpl<>(""));
+        ability.addTarget(new TargetPermanent());
+        addCustomCardWithAbility(
+                "target transform for " + controller.getName(),
+                controller,
+                ability
+        );
+    }
+
+    /**
      * Return target card to hand that can be called by text "return from ..."
      *
      * @param controller
@@ -544,7 +556,7 @@ public abstract class MageTestPlayerBase {
         );
 
         // library
-        ability = new SimpleActivatedAbility(new SearchLibraryPutInHandEffect(new TargetCardInLibrary(StaticFilters.FILTER_CARD)).setText("return from library"), new ManaCostsImpl<>(""));
+        ability = new SimpleActivatedAbility(new SearchLibraryPutInHandEffect(new TargetCardInLibrary(StaticFilters.FILTER_CARD), false).setText("return from library"), new ManaCostsImpl<>(""));
         addCustomCardWithAbility(
                 "return from library for " + controller.getName(),
                 controller,

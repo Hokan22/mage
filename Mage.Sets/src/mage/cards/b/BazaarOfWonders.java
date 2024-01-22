@@ -53,13 +53,13 @@ public final class BazaarOfWonders extends CardImpl {
 
 class BazaarOfWondersEffect extends OneShotEffect {
 
-    public BazaarOfWondersEffect() {
+    BazaarOfWondersEffect() {
         super(Outcome.Benefit);
         this.staticText = "counter it if a card with the same name is in a graveyard "
                 + "or a nontoken permanent with the same name is on the battlefield";
     }
 
-    public BazaarOfWondersEffect(final BazaarOfWondersEffect effect) {
+    private BazaarOfWondersEffect(final BazaarOfWondersEffect effect) {
         super(effect);
     }
 

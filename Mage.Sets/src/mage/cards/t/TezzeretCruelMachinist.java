@@ -66,12 +66,12 @@ public final class TezzeretCruelMachinist extends CardImpl {
 
 class TezzeretCruelMachinistEffect extends OneShotEffect {
 
-    public TezzeretCruelMachinistEffect() {
+    TezzeretCruelMachinistEffect() {
         super(Outcome.Benefit);
         this.staticText = "put any number of cards from your hand onto the battlefield face down. They're 5/5 artifact creatures";
     }
 
-    public TezzeretCruelMachinistEffect(final TezzeretCruelMachinistEffect effect) {
+    private TezzeretCruelMachinistEffect(final TezzeretCruelMachinistEffect effect) {
         super(effect);
     }
 
@@ -109,11 +109,11 @@ class TezzeretCruelMachinistEffect extends OneShotEffect {
 
 class TezzeretCruelMachinistCardTypeEffect extends ContinuousEffectImpl {
 
-    public TezzeretCruelMachinistCardTypeEffect() {
+    TezzeretCruelMachinistCardTypeEffect() {
         super(Duration.Custom, Layer.CopyEffects_1, SubLayer.FaceDownEffects_1b, Outcome.Neutral);
     }
 
-    public TezzeretCruelMachinistCardTypeEffect(final TezzeretCruelMachinistCardTypeEffect effect) {
+    private TezzeretCruelMachinistCardTypeEffect(final TezzeretCruelMachinistCardTypeEffect effect) {
         super(effect);
     }
 

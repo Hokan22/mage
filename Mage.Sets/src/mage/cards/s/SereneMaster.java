@@ -60,12 +60,12 @@ public final class SereneMaster extends CardImpl {
 
 class SereneMasterEffect extends OneShotEffect {
 
-    public SereneMasterEffect() {
+    SereneMasterEffect() {
         super(Outcome.Benefit);
         this.staticText = "exchange its power and the power of target creature it's blocking until end of combat";
     }
 
-    public SereneMasterEffect(final SereneMasterEffect effect) {
+    private SereneMasterEffect(final SereneMasterEffect effect) {
         super(effect);
     }
 

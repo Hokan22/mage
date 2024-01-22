@@ -60,7 +60,7 @@ public final class EdificeOfAuthority extends CardImpl {
 
 class EdificeOfAuthorityEffect extends OneShotEffect {
 
-    public EdificeOfAuthorityEffect() {
+    EdificeOfAuthorityEffect() {
         super(Outcome.LoseAbility);
     }
 
@@ -69,7 +69,7 @@ class EdificeOfAuthorityEffect extends OneShotEffect {
         staticText = ruleText;
     }
 
-    public EdificeOfAuthorityEffect(final EdificeOfAuthorityEffect effect) {
+    private EdificeOfAuthorityEffect(final EdificeOfAuthorityEffect effect) {
         super(effect);
     }
 
@@ -88,12 +88,12 @@ class EdificeOfAuthorityEffect extends OneShotEffect {
 
 class EdificeOfAuthorityRestrictionEffect extends RestrictionEffect {
 
-    public EdificeOfAuthorityRestrictionEffect() {
+    EdificeOfAuthorityRestrictionEffect() {
         super(Duration.Custom);
         staticText = "";
     }
 
-    public EdificeOfAuthorityRestrictionEffect(final EdificeOfAuthorityRestrictionEffect effect) {
+    private EdificeOfAuthorityRestrictionEffect(final EdificeOfAuthorityRestrictionEffect effect) {
         super(effect);
     }
 

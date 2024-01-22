@@ -46,12 +46,12 @@ public final class TormentedHero extends CardImpl {
 
 class EachOpponentLosesYouGainSumLifeEffect extends OneShotEffect {
 
-    public EachOpponentLosesYouGainSumLifeEffect() {
+    EachOpponentLosesYouGainSumLifeEffect() {
         super(Outcome.Damage);
         staticText = "Each opponent loses 1 life. You gain life equal to the life lost this way";
     }
 
-    public EachOpponentLosesYouGainSumLifeEffect(final EachOpponentLosesYouGainSumLifeEffect effect) {
+    private EachOpponentLosesYouGainSumLifeEffect(final EachOpponentLosesYouGainSumLifeEffect effect) {
         super(effect);
     }
 

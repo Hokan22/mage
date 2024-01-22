@@ -22,6 +22,7 @@ import mage.game.permanent.PermanentToken;
 import mage.players.Player;
 import mage.target.TargetPermanent;
 import mage.target.TargetPlayer;
+import mage.target.common.TargetSacrifice;
 import mage.target.targetpointer.FixedTarget;
 
 import java.util.HashSet;
@@ -138,11 +139,11 @@ class TergridGodOfFrightTriggeredAbility extends TriggeredAbilityImpl {
 
 class TergridGodOfFrightEffect extends OneShotEffect {
 
-    public TergridGodOfFrightEffect() {
+    TergridGodOfFrightEffect() {
         super(Outcome.Neutral);
     }
 
-    public TergridGodOfFrightEffect(final TergridGodOfFrightEffect effect) {
+    private TergridGodOfFrightEffect(final TergridGodOfFrightEffect effect) {
         super(effect);
     }
 
@@ -177,7 +178,7 @@ class TergridsLaternEffect extends OneShotEffect {
         staticText = "Target player loses 3 life unless they sacrifice a nonland permanent or discard a card";
     }
 
-    public TergridsLaternEffect(final TergridsLaternEffect effect) {
+    private TergridsLaternEffect(final TergridsLaternEffect effect) {
         super(effect);
     }
 
@@ -219,8 +220,7 @@ class TergridsLaternEffect extends OneShotEffect {
         }
         switch (chosen) {
             case SACRIFICE_CHOICE:
-                TargetPermanent target = new TargetPermanent(StaticFilters.FILTER_CONTROLLED_PERMANENT_NON_LAND);
-                target.setNotTarget(true);
+                TargetSacrifice target = new TargetSacrifice(StaticFilters.FILTER_CONTROLLED_PERMANENT_NON_LAND);
                 targetedPlayer.choose(Outcome.Sacrifice, target, source, game);
                 Permanent chosenLand = game.getPermanent(target.getFirstTarget());
                 return chosenLand != null && chosenLand.sacrifice(source, game);

@@ -63,12 +63,12 @@ public final class CoffinQueen extends CardImpl {
 
 class CoffinQueenCreateDelayedTriggerEffect extends OneShotEffect {
 
-    public CoffinQueenCreateDelayedTriggerEffect() {
+    CoffinQueenCreateDelayedTriggerEffect() {
         super(Outcome.Detriment);
         this.staticText = "When {this} becomes untapped or you lose control of {this}, exile that creature.";
     }
 
-    public CoffinQueenCreateDelayedTriggerEffect(final CoffinQueenCreateDelayedTriggerEffect effect) {
+    private CoffinQueenCreateDelayedTriggerEffect(final CoffinQueenCreateDelayedTriggerEffect effect) {
         super(effect);
     }
 
@@ -96,7 +96,7 @@ class CoffinQueenDelayedTriggeredAbility extends DelayedTriggeredAbility {
         super(new ExileTargetEffect(), Duration.EndOfGame, true);
     }
 
-    CoffinQueenDelayedTriggeredAbility(CoffinQueenDelayedTriggeredAbility ability) {
+    private CoffinQueenDelayedTriggeredAbility(final CoffinQueenDelayedTriggeredAbility ability) {
         super(ability);
     }
 

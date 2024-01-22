@@ -43,12 +43,12 @@ public final class OverrideCard extends CardImpl {
 
 class OverrideEffect extends OneShotEffect {
 
-    public OverrideEffect() {
+    OverrideEffect() {
         super(Outcome.Benefit);
         this.staticText = "Counter target spell unless its controller pays {1} for each artifact you control";
     }
 
-    public OverrideEffect(final OverrideEffect effect) {
+    private OverrideEffect(final OverrideEffect effect) {
         super(effect);
     }
 

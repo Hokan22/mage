@@ -56,7 +56,7 @@ class NecromanticSummoningReplacementEffect extends ReplacementEffectImpl {
         super(Duration.EndOfStep, Outcome.BoostCreature);
     }
 
-    NecromanticSummoningReplacementEffect(NecromanticSummoningReplacementEffect effect) {
+    private NecromanticSummoningReplacementEffect(final NecromanticSummoningReplacementEffect effect) {
         super(effect);
     }
 
@@ -70,11 +70,6 @@ class NecromanticSummoningReplacementEffect extends ReplacementEffectImpl {
         if (event.getTargetId().equals(getTargetPointer().getFirst(game, source))) {
             return SpellMasteryCondition.instance.apply(game, source);
         }
-        return false;
-    }
-
-    @Override
-    public boolean apply(Game game, Ability source) {
         return false;
     }
 

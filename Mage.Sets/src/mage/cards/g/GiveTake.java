@@ -49,12 +49,12 @@ public final class GiveTake extends SplitCard {
 
 class TakeEffect extends OneShotEffect {
 
-    public TakeEffect() {
+    TakeEffect() {
         super(Outcome.DrawCard);
         this.staticText = "Remove all +1/+1 counters from target creature you control. Draw that many cards";
     }
 
-    public TakeEffect(final TakeEffect effect) {
+    private TakeEffect(final TakeEffect effect) {
         super(effect);
     }
 

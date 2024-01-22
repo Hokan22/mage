@@ -69,7 +69,7 @@ class LivingArtifactTriggeredAbility extends TriggeredAbilityImpl {
         super(Zone.BATTLEFIELD, new LivingArtifactEffect(), false);
     }
 
-    public LivingArtifactTriggeredAbility(final LivingArtifactTriggeredAbility ability) {
+    private LivingArtifactTriggeredAbility(final LivingArtifactTriggeredAbility ability) {
         super(ability);
     }
 
@@ -100,11 +100,11 @@ class LivingArtifactTriggeredAbility extends TriggeredAbilityImpl {
 
 class LivingArtifactEffect extends OneShotEffect {
 
-    public LivingArtifactEffect() {
+    LivingArtifactEffect() {
         super(Outcome.Benefit);
     }
 
-    public LivingArtifactEffect(final LivingArtifactEffect effect) {
+    private LivingArtifactEffect(final LivingArtifactEffect effect) {
         super(effect);
     }
 

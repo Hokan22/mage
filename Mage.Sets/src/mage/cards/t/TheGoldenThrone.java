@@ -49,12 +49,12 @@ public final class TheGoldenThrone extends CardImpl {
 
 class TheGoldenThroneEffect extends ReplacementEffectImpl {
 
-    public TheGoldenThroneEffect() {
+    TheGoldenThroneEffect() {
         super(Duration.WhileOnBattlefield, Outcome.Benefit);
         staticText = "if you would lose the game, instead exile {this} and your life total becomes 1";
     }
 
-    public TheGoldenThroneEffect(final TheGoldenThroneEffect effect) {
+    private TheGoldenThroneEffect(final TheGoldenThroneEffect effect) {
         super(effect);
     }
 

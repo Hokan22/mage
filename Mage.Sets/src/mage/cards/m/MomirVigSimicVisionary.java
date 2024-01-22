@@ -50,7 +50,7 @@ public final class MomirVigSimicVisionary extends CardImpl {
         this.toughness = new MageInt(2);
 
         // Whenever you cast a green creature spell, you may search your library for a creature card and reveal it. If you do, shuffle your library and put that card on top of it.
-        Effect effect = new SearchLibraryPutOnLibraryEffect(new TargetCardInLibrary(StaticFilters.FILTER_CARD_CREATURE), true, true);
+        Effect effect = new SearchLibraryPutOnLibraryEffect(new TargetCardInLibrary(StaticFilters.FILTER_CARD_CREATURE), true);
         effect.setText("search your library for a creature card, reveal it, then shuffle and put that card on top");
         this.addAbility(new SpellCastControllerTriggeredAbility(effect, filter, true));
 
@@ -71,12 +71,12 @@ public final class MomirVigSimicVisionary extends CardImpl {
 
 class MomirVigSimicVisionaryEffect extends OneShotEffect {
 
-    public MomirVigSimicVisionaryEffect() {
+    MomirVigSimicVisionaryEffect() {
         super(Outcome.DrawCard);
         this.staticText = "reveal the top card of your library. If it's a creature card, put that card into your hand";
     }
 
-    public MomirVigSimicVisionaryEffect(final MomirVigSimicVisionaryEffect effect) {
+    private MomirVigSimicVisionaryEffect(final MomirVigSimicVisionaryEffect effect) {
         super(effect);
     }
 
@@ -94,7 +94,7 @@ class MomirVigSimicVisionaryEffect extends OneShotEffect {
         }
 
         CardsImpl cards = new CardsImpl();
-        cards.addAll(controller.getLibrary().getTopCards(game, 1));
+        cards.addAllCards(controller.getLibrary().getTopCards(game, 1));
         controller.revealCards(sourceObject.getIdName(), cards, game);
 
         Set<Card> cardsList = cards.getCards(game);

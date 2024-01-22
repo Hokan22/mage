@@ -43,12 +43,12 @@ public final class TemptWithReflections extends CardImpl {
 
 class TemptWithReflectionsEffect extends OneShotEffect {
 
-    public TemptWithReflectionsEffect() {
+    TemptWithReflectionsEffect() {
         super(Outcome.PutCreatureInPlay);
         this.staticText = "<i>Tempting offer</i> &mdash; Choose target creature you control. Create a token that's a copy of that creature. Each opponent may create a token that's a copy of that creature. For each opponent who does, create a token that's a copy of that creature";
     }
 
-    public TemptWithReflectionsEffect(final TemptWithReflectionsEffect effect) {
+    private TemptWithReflectionsEffect(final TemptWithReflectionsEffect effect) {
         super(effect);
     }
 

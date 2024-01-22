@@ -57,7 +57,6 @@ public class ScryfallImageSupportCards {
             add("VIS"); // Visions
             add("5ED"); // Fifth Edition
             //add("PVAN"); // Vanguard Series
-            add("PPOD"); // Portal Demo Game
             add("POR"); // Portal
             add("WTH"); // Weatherlight
             add("WC97"); // World Championship Decks 1997
@@ -145,7 +144,7 @@ public class ScryfallImageSupportCards {
             add("PAL06"); // Arena League 2006
             //add("PMPS06"); // Magic Premiere Shop 2006
             add("PHUK"); // Hachette UK
-            add("PGTW"); // Gateway 2006
+            add("PDCI"); // DCI Promos
             add("P06"); // Magic Player Rewards 2006
             add("G06"); // Judge Gift Cards 2006
             add("F06"); // Friday Night Magic 2006
@@ -155,7 +154,6 @@ public class ScryfallImageSupportCards {
             add("CSP"); // Coldsnap
             add("TSP"); // Time Spiral
             add("TSB"); // Time Spiral Timeshifted
-            add("PG07"); // Gateway 2007
             //add("PMPS07"); // Magic Premiere Shop 2007
             add("P07"); // Magic Player Rewards 2007
             add("HHO"); // Happy Holidays
@@ -165,7 +163,6 @@ public class ScryfallImageSupportCards {
             add("FUT"); // Future Sight
             add("10E"); // Tenth Edition
             add("P10E"); // Tenth Edition Promos
-            add("PSUM"); // Summer of Magic
             add("ME1"); // Masters Edition
             add("LRW"); // Lorwyn
             add("DD1"); // Duel Decks: Elves vs. Goblins
@@ -173,7 +170,6 @@ public class ScryfallImageSupportCards {
             add("PJSE"); // Junior Series Europe
             add("PJAS"); // Junior APAC Series
             //add("PMPS08"); // Magic Premiere Shop 2008
-            add("PG08"); // Gateway 2008
             add("P08"); // Magic Player Rewards 2008
             add("G08"); // Judge Gift Cards 2008
             add("F08"); // Friday Night Magic 2008
@@ -185,11 +181,9 @@ public class ScryfallImageSupportCards {
             add("EVE"); // Eventide
             add("DRB"); // From the Vault: Dragons
             add("ME2"); // Masters Edition II
-            add("PWPN"); // Wizards Play Network 2008
             add("ALA"); // Shards of Alara
             add("PALA"); // Shards of Alara Promos
             add("DD2"); // Duel Decks: Jace vs. Chandra
-            add("PW09"); // Wizards Play Network 2009
             add("PDTP"); // Duels of the Planeswalkers 2009 Promos
             //add("PMPS09"); // Magic Premiere Shop 2009
             add("P09"); // Magic Player Rewards 2009
@@ -209,7 +203,6 @@ public class ScryfallImageSupportCards {
             add("DDD"); // Duel Decks: Garruk vs. Liliana
             add("H09"); // Premium Deck Series: Slivers
             add("PDP10"); // Duels of the Planeswalkers 2010 Promos
-            add("PW10"); // Wizards Play Network 2010
             //add("PMPS10"); // Magic Premiere Shop 2010
             add("P10"); // Magic Player Rewards 2010
             add("G10"); // Judge Gift Cards 2010
@@ -251,7 +244,7 @@ public class ScryfallImageSupportCards {
             add("PISD"); // Innistrad Promos
             add("ISD"); // Innistrad
             add("PD3"); // Premium Deck Series: Graveborn
-            add("PIDW"); // IDW Comics 2012
+            add("PIDW"); // IDW Comics Inserts
             add("PW12"); // Wizards Play Network 2012
             add("PDP12"); // Duels of the Planeswalkers 2012 Promos
             add("J12"); // Judge Gift Cards 2012
@@ -271,7 +264,6 @@ public class ScryfallImageSupportCards {
             add("PRTR"); // Return to Ravnica Promos
             add("CM1"); // Commander's Arsenal
             add("PDP13"); // Duels of the Planeswalkers 2013 Promos
-            add("PI13"); // IDW Comics 2013
             add("J13"); // Judge Gift Cards 2013
             add("F13"); // Friday Night Magic 2013
             add("PGTC"); // Gatecrash Promos
@@ -289,7 +281,6 @@ public class ScryfallImageSupportCards {
             add("THS"); // Theros
             add("C13"); // Commander 2013
             add("PDP14"); // Duels of the Planeswalkers 2014 Promos
-            add("PI14"); // IDW Comics 2014
             add("J14"); // Judge Gift Cards 2014
             add("F14"); // Friday Night Magic 2014
             add("PBNG"); // Born of the Gods Promos
@@ -378,7 +369,7 @@ public class ScryfallImageSupportCards {
             add("HOU"); // Hour of Devastation
             add("PS17"); // San Diego Comic-Con 2017
             add("C17"); // Commander 2017
-            add("PWCQ"); // World Magic Cup Qualifiers
+            add("WMC"); // World Magic Cup Qualifiers
             add("H17"); // HasCon 2017
             add("HTR16"); // 2016 Heroes of the Realm
             add("PXLN"); // Ixalan Promos
@@ -478,6 +469,7 @@ public class ScryfallImageSupportCards {
             add("C20"); // Commander 2020 Edition
             add("M21"); // Core Set 2021
             add("JMP"); // Jumpstart
+            add("PH19"); // 2019 Heroes of the Realm
             add("2XM"); // Double Masters
             add("AKR"); // Amonkhet Remastered
             add("ZNR"); // Zendikar Rising
@@ -486,6 +478,7 @@ public class ScryfallImageSupportCards {
             add("KLR"); // Kaladesh Remastered
             add("CMR"); // Commander Legends
             add("CC1"); // Commander Collection: Green
+            add("PL21"); // Year of the Ox 2021
             add("KHM"); // Kaldheim
             add("KHC"); // Kaldheim Commander
             add("TSR"); // Time Spiral Remastered
@@ -508,6 +501,7 @@ public class ScryfallImageSupportCards {
             add("CC2"); // Commander Collection: Black
             add("NEO"); // Kamigawa: Neon Dynasty
             add("NEC"); // Neon Dynasty Commander
+            add("PL22"); // Year of the Tiger 2022
             add("SNC"); // Streets of New Capenna
             add("NCC"); // New Capenna Commander
             add("SLX"); // Universes Within
@@ -527,6 +521,7 @@ public class ScryfallImageSupportCards {
             add("DMR"); // Dominaria Remastered
             add("ONE"); // Phyrexia: All Will Be One
             add("ONC"); // Phyrexia: All Will Be One Commander
+            add("PL23"); // Year of the Rabbit 2023
             add("MOM"); // March of the Machine
             add("MOC"); // March of the Machine Commander
             add("MAT"); // March of the Machine: The Aftermath
@@ -535,6 +530,22 @@ public class ScryfallImageSupportCards {
             add("LTR"); // The Lord of the Rings: Tales of Middle-Earth
             add("LTC"); // Tales of Middle-Earth Commander
             add("CMM"); // Commander Masters
+            add("WHO"); // Doctor Who
+            add("WOE"); // Wilds of Eldraine
+            add("WOT"); // Wilds of Eldraine: Enchanting Tales
+            add("WOC"); // Wilds of Eldraine Commander
+            add("LCI"); // Lost Caverns of Ixalan
+            add("LCC"); // Lost Caverns of Ixalan Commander
+            add("REX"); // Jurassic World Collection
+            add("SPG"); // Special Guests
+            add("RVR"); // Ravnica Remastered
+            add("PIP"); // Fallout
+            add("MKM"); // Murders at Karlov Manor
+            add("MKC"); // Murders at Karlov Manor Commander
+            add("CLU"); // Ravnica: Clue Edition
+
+            // Custom sets using Scryfall images - must provide a direct link for each card in directDownloadLinks
+            add("CALC"); // Custom Alchemized versions of existing cards
         }
     };
 
@@ -545,6 +556,7 @@ public class ScryfallImageSupportCards {
             //
             // example:
             //   api link: https://api.scryfall.com/cards/trix/6/
+            //   api direct link: https://api.scryfall.com/cards/rex/26/en?format=image&face=back
             //   image link: https://c1.scryfall.com/file/scryfall-cards/large/back/d/5/d5dfd236-b1da-4552-b94f-ebf6bb9dafdf.jpg
             //
             // key for one card:
@@ -553,6 +565,11 @@ public class ScryfallImageSupportCards {
             // key for same name cards (alternative images):
             //   set/card_name/card_number_1
             //   set/card_name/card_number_2
+            //
+            // double faced cards:
+            //  front face image: format=image&face=front
+            //  back face image: format=image&face=back
+            //  example: https://api.scryfall.com/cards/rex/26/en?format=image&face=back
             //
             // Cards with non-ASCII collector numbers must use direct download (cause xmage uses different card number)
             // Verify checks must check and show missing data from that list,
@@ -1001,6 +1018,26 @@ public class ScryfallImageSupportCards {
             put("PMEI/Jamuraan Lion/10*", "https://api.scryfall.com/cards/pmei/10★/");
             // PRES
             put("PRES/Lathliss, Dragon Queen/149*", "https://api.scryfall.com/cards/pres/149★/");
+
+            // CALC - custom alchemy version of cards.
+            put("CALC/C-Pillar of the Paruns", "https://api.scryfall.com/cards/dis/176/");
+
+            // LTR - 0 number for tokens only
+            put("LTR/The One Ring/001", "https://api.scryfall.com/cards/ltr/0/");
+
+            // REX - double faced lands (xmage uses two diff lands for it)
+            put("REX/Command Tower/26", "https://api.scryfall.com/cards/rex/26/en?format=image");
+            put("REX/Command Tower/26b", "https://api.scryfall.com/cards/rex/26/en?format=image&face=back");
+            put("REX/Forest/25", "https://api.scryfall.com/cards/rex/25/en?format=image");
+            put("REX/Forest/25b", "https://api.scryfall.com/cards/rex/25/en?format=image&face=back");
+            put("REX/Island/22", "https://api.scryfall.com/cards/rex/22/en?format=image");
+            put("REX/Island/22b", "https://api.scryfall.com/cards/rex/22/en?format=image&face=back");
+            put("REX/Mountain/24", "https://api.scryfall.com/cards/rex/24/en?format=image");
+            put("REX/Mountain/24b", "https://api.scryfall.com/cards/rex/24/en?format=image&face=back");
+            put("REX/Plains/21", "https://api.scryfall.com/cards/rex/21/en?format=image");
+            put("REX/Plains/21b", "https://api.scryfall.com/cards/rex/21/en?format=image&face=back");
+            put("REX/Swamp/23", "https://api.scryfall.com/cards/rex/23/en?format=image");
+            put("REX/Swamp/23b", "https://api.scryfall.com/cards/rex/23/en?format=image&face=back");
         }
     };
 
@@ -1055,7 +1092,7 @@ public class ScryfallImageSupportCards {
     }
 
     public static boolean isApiLink(String link) {
-        return !link.endsWith(".jpg") && !link.endsWith(".png");
+        return !link.endsWith(".jpg") && !link.endsWith(".png") && !link.contains("format=image");
     }
 
     public static Map<String, String> getDirectDownloadLinks() {

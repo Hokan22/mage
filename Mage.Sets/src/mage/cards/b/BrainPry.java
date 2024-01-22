@@ -42,12 +42,12 @@ public final class BrainPry extends CardImpl {
 
 class BrainPryEffect extends OneShotEffect {
 
-    public BrainPryEffect() {
+    BrainPryEffect() {
         super(Outcome.Discard);
         staticText = "Target player reveals their hand. That player discards a card with that name. If they can't, you draw a card";
     }
 
-    public BrainPryEffect(final BrainPryEffect effect) {
+    private BrainPryEffect(final BrainPryEffect effect) {
         super(effect);
     }
 

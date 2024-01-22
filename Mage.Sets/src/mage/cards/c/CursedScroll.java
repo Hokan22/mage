@@ -47,12 +47,12 @@ public final class CursedScroll extends CardImpl {
 
 class CursedScrollEffect extends OneShotEffect {
 
-    public CursedScrollEffect() {
+    CursedScrollEffect() {
         super(Outcome.Neutral);
         staticText = ", then reveal a card at random from your hand. If that card has the chosen name, {this} deals 2 damage to any target";
     }
 
-    public CursedScrollEffect(final CursedScrollEffect effect) {
+    private CursedScrollEffect(final CursedScrollEffect effect) {
         super(effect);
     }
 

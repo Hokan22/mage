@@ -48,12 +48,12 @@ public final class SpellRupture extends CardImpl {
 
 class SpellRuptureCounterUnlessPaysEffect extends OneShotEffect {
 
-    public SpellRuptureCounterUnlessPaysEffect() {
+    SpellRuptureCounterUnlessPaysEffect() {
         super(Outcome.Detriment);
         this.staticText = "Counter target spell unless its controller pays {X}, where X is the greatest power among creatures you control";
     }
 
-    public SpellRuptureCounterUnlessPaysEffect(final SpellRuptureCounterUnlessPaysEffect effect) {
+    private SpellRuptureCounterUnlessPaysEffect(final SpellRuptureCounterUnlessPaysEffect effect) {
         super(effect);
     }
 

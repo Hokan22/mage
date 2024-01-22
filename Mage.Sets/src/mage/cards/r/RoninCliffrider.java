@@ -49,12 +49,12 @@ public final class RoninCliffrider extends CardImpl {
 }
 class RoninCliffriderEffect extends OneShotEffect {
 
-    public RoninCliffriderEffect() {
+    RoninCliffriderEffect() {
         super(Outcome.Damage);
         this.staticText = "you may have it deal 1 damage to each creature defending player controls";
     }
 
-    public RoninCliffriderEffect(final RoninCliffriderEffect effect) {
+    private RoninCliffriderEffect(final RoninCliffriderEffect effect) {
         super(effect);
     }
 

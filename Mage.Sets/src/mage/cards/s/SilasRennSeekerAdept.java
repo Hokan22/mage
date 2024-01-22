@@ -55,12 +55,12 @@ public final class SilasRennSeekerAdept extends CardImpl {
 
 class SilasRennSeekerAdeptPlayEffect extends AsThoughEffectImpl {
 
-    public SilasRennSeekerAdeptPlayEffect() {
+    SilasRennSeekerAdeptPlayEffect() {
         super(AsThoughEffectType.PLAY_FROM_NOT_OWN_HAND_ZONE, Duration.EndOfTurn, Outcome.Benefit);
         staticText = "choose target artifact card in your graveyard. You may cast that card this turn";
     }
 
-    public SilasRennSeekerAdeptPlayEffect(final SilasRennSeekerAdeptPlayEffect effect) {
+    private SilasRennSeekerAdeptPlayEffect(final SilasRennSeekerAdeptPlayEffect effect) {
         super(effect);
     }
 

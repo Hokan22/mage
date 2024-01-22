@@ -61,12 +61,12 @@ public final class IntetTheDreamer extends CardImpl {
 
 class IntetTheDreamerExileEffect extends OneShotEffect {
 
-    public IntetTheDreamerExileEffect() {
+    IntetTheDreamerExileEffect() {
         super(Outcome.Benefit);
         staticText = "exile the top card of your library face down. You may play that card without paying its mana cost for as long as Intet remains on the battlefield";
     }
 
-    public IntetTheDreamerExileEffect(final IntetTheDreamerExileEffect effect) {
+    private IntetTheDreamerExileEffect(final IntetTheDreamerExileEffect effect) {
         super(effect);
     }
 
@@ -100,7 +100,7 @@ class IntetTheDreamerExileEffect extends OneShotEffect {
 
 class IntetTheDreamerAsThoughEffect extends AsThoughEffectImpl {
 
-    public IntetTheDreamerAsThoughEffect() {
+    IntetTheDreamerAsThoughEffect() {
         super(AsThoughEffectType.PLAY_FROM_NOT_OWN_HAND_ZONE, Duration.Custom, Outcome.Benefit);
         staticText = "You may play that card without paying its mana cost for as long as Intet remains on the battlefield.";
     }
@@ -160,12 +160,12 @@ class IntetTheDreamerAsThoughEffect extends AsThoughEffectImpl {
 
 class IntetTheDreamerLookEffect extends AsThoughEffectImpl {
 
-    public IntetTheDreamerLookEffect() {
+    IntetTheDreamerLookEffect() {
         super(AsThoughEffectType.LOOK_AT_FACE_DOWN, Duration.EndOfGame, Outcome.Benefit);
         staticText = "You may look at that card for as long as it remains exiled";
     }
 
-    public IntetTheDreamerLookEffect(final IntetTheDreamerLookEffect effect) {
+    private IntetTheDreamerLookEffect(final IntetTheDreamerLookEffect effect) {
         super(effect);
     }
 

@@ -41,7 +41,6 @@ import static org.mage.plugins.card.utils.CardImageUtils.getImagesDir;
  */
 public class DownloadPicturesService extends DefaultBoundedRangeModel implements DownloadServiceInfo, Runnable {
 
-    // don't forget to remove new sets from ignore.urls to download (properties file in resources)
     private static DownloadPicturesService instance;
     private static final Logger logger = Logger.getLogger(DownloadPicturesService.class);
 
@@ -51,6 +50,8 @@ public class DownloadPicturesService extends DefaultBoundedRangeModel implements
     private static final String ALL_TOKENS = "- TOKEN images";
 
     private static final int MAX_ERRORS_COUNT_BEFORE_CANCEL = 50;
+
+    private static final int MIN_FILE_SIZE_OF_GOOD_IMAGE = 1024 * 10; // protect from wrong data save
 
     private final DownloadImagesDialog uiDialog;
     private boolean needCancel;
@@ -368,7 +369,7 @@ public class DownloadPicturesService extends DefaultBoundedRangeModel implements
         for (CardDownloadData data : cardsMissing) {
             if (data.isToken()) {
                 if (selectedSource.isTokenSource()
-                        && selectedSource.isTokenImageProvided(data.getSet(), data.getName(), data.getType())
+                        && selectedSource.isTokenImageProvided(data.getSet(), data.getName(), data.getImageNumber())
                         && selectedSets.contains(data.getSet())) {
                     numberTokenImagesAvailable++;
                     cardsDownloadQueue.add(data);
@@ -428,23 +429,14 @@ public class DownloadPicturesService extends DefaultBoundedRangeModel implements
     }
 
     private static List<CardDownloadData> prepareMissingCards(List<CardInfo> allCards, boolean redownloadMode) {
-
-        // get filter for Standard Type 2 cards
-        Set<String> type2SetsFilter = new HashSet<>();
-        List<String> constructedFormats = ConstructedFormats.getSetsByFormat(ConstructedFormats.STANDARD);
-        if (constructedFormats != null && !constructedFormats.isEmpty()) {
-            type2SetsFilter.addAll(constructedFormats);
-        } else {
-            logger.warn("No formats defined. Try connecting to a server first!");
-        }
-
         // prepare checking list
         List<CardDownloadData> allCardsUrls = Collections.synchronizedList(new ArrayList<>());
         try {
             allCards.parallelStream().forEach(card -> {
-                if (!card.getCardNumber().isEmpty() && !"0".equals(card.getCardNumber()) && !card.getSetCode().isEmpty()) {
+                if (!card.getCardNumber().isEmpty()
+                        && !"0".equals(card.getCardNumber())
+                        && !card.getSetCode().isEmpty()) {
                     String cardName = card.getName();
-                    boolean isType2 = type2SetsFilter.contains(card.getSetCode());
                     CardDownloadData url = new CardDownloadData(cardName, card.getSetCode(), card.getCardNumber(), card.usesVariousArt(), 0, false, card.isDoubleFaced(), card.isNightCard());
 
                     // variations must have diff file names with additional postfix
@@ -454,7 +446,6 @@ public class DownloadPicturesService extends DefaultBoundedRangeModel implements
 
                     url.setFlipCard(card.isFlipCard());
                     url.setSplitCard(card.isSplitCard());
-                    url.setType2(isType2);
 
                     // main side
                     allCardsUrls.add(url);
@@ -477,7 +468,6 @@ public class DownloadPicturesService extends DefaultBoundedRangeModel implements
                                 secondSideCard.getCardNumber(),
                                 card.usesVariousArt(),
                                 0, false, card.isDoubleFaced(), true);
-                        url.setType2(isType2);
                         allCardsUrls.add(url);
                     }
                     if (card.isFlipCard()) {
@@ -492,7 +482,6 @@ public class DownloadPicturesService extends DefaultBoundedRangeModel implements
                                 0, false, card.isDoubleFaced(), card.isNightCard());
                         cardDownloadData.setFlipCard(true);
                         cardDownloadData.setFlippedSide(true);
-                        cardDownloadData.setType2(isType2);
                         allCardsUrls.add(cardDownloadData);
                     }
                     if (card.getMeldsToCardName() != null) {
@@ -512,7 +501,6 @@ public class DownloadPicturesService extends DefaultBoundedRangeModel implements
                                 meldsToCard.getCardNumber(),
                                 card.usesVariousArt(),
                                 0, false, false, false);
-                        url.setType2(isType2);
                         allCardsUrls.add(url);
                     }
                     if (card.isModalDoubleFacedCard()) {
@@ -525,7 +513,6 @@ public class DownloadPicturesService extends DefaultBoundedRangeModel implements
                                 card.getCardNumber(),
                                 card.usesVariousArt(),
                                 0, false, true, true);
-                        cardDownloadData.setType2(isType2);
                         allCardsUrls.add(cardDownloadData);
                     }
                 } else if (card.getCardNumber().isEmpty() || "0".equals(card.getCardNumber())) {
@@ -562,8 +549,13 @@ public class DownloadPicturesService extends DefaultBoundedRangeModel implements
                 cardsToDownload.add(card);
             } else {
                 // need missing cards
-                File file = new TFile(CardImageUtils.buildImagePathToCardOrToken(card));
+                String imagePath = CardImageUtils.buildImagePathToCardOrToken(card);
+                File file = new TFile(imagePath);
                 if (!file.exists()) {
+                    cardsToDownload.add(card);
+                } else if (file.length() < MIN_FILE_SIZE_OF_GOOD_IMAGE) {
+                    // how-to fix: if it really downloads image data then set lower file size
+                    logger.error("Found broken file: " + imagePath);
                     cardsToDownload.add(card);
                 }
             }
@@ -664,7 +656,7 @@ public class DownloadPicturesService extends DefaultBoundedRangeModel implements
                 while (!executor.isTerminated()) {
                     try {
                         TimeUnit.SECONDS.sleep(1);
-                    } catch (InterruptedException ie) {
+                    } catch (InterruptedException ignore) {
                     }
                 }
             }
@@ -705,7 +697,7 @@ public class DownloadPicturesService extends DefaultBoundedRangeModel implements
             this.urls = urls;
             this.count = count;
             this.actualFilename = "";
-            useSpecifiedPaths = false;
+            this.useSpecifiedPaths = false;
         }
 
         DownloadTask(CardDownloadData card, String baseUrl, String actualFilename, int count) {
@@ -713,7 +705,7 @@ public class DownloadPicturesService extends DefaultBoundedRangeModel implements
             this.urls = new CardImageUrls(baseUrl, null);
             this.count = count;
             this.actualFilename = actualFilename;
-            useSpecifiedPaths = true;
+            this.useSpecifiedPaths = true;
         }
 
         @Override
@@ -760,17 +752,6 @@ public class DownloadPicturesService extends DefaultBoundedRangeModel implements
                 } else {
                     destFile = new TFile(CardImageUtils.buildImagePathToCardOrToken(card));
                 }
-
-                // FILE already exists (in zip or in dir)
-                // don't use, images can be re-downloaded
-                /*
-                if (destFile.exists()) {
-                    synchronized (sync) {
-                        update(cardIndex + 1, count);
-                    }
-                    return;
-                }
-                */
 
                 // check zip access
                 TFile testArchive = destFile.getTopLevelArchive();
@@ -933,7 +914,7 @@ public class DownloadPicturesService extends DefaultBoundedRangeModel implements
             List<CardDownloadData> downloadedCards = Collections.synchronizedList(new ArrayList<>());
             DownloadPicturesService.this.cardsMissing.parallelStream().forEach(cardDownloadData -> {
                 TFile file = new TFile(CardImageUtils.buildImagePathToCardOrToken(cardDownloadData));
-                if (file.exists()) {
+                if (file.exists() && file.length() > MIN_FILE_SIZE_OF_GOOD_IMAGE) {
                     downloadedCards.add(cardDownloadData);
                 }
             });

@@ -57,12 +57,12 @@ public final class RishadanPawnshop extends CardImpl {
 
 class RishadanPawnshopShuffleIntoLibraryEffect extends OneShotEffect {
 
-    public RishadanPawnshopShuffleIntoLibraryEffect() {
+    RishadanPawnshopShuffleIntoLibraryEffect() {
         super(Outcome.Detriment);
         this.staticText = "The owner of target nontoken permanent you control shuffles it into their library";
     }
 
-    public RishadanPawnshopShuffleIntoLibraryEffect(final RishadanPawnshopShuffleIntoLibraryEffect effect) {
+    private RishadanPawnshopShuffleIntoLibraryEffect(final RishadanPawnshopShuffleIntoLibraryEffect effect) {
         super(effect);
     }
 

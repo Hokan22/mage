@@ -42,12 +42,12 @@ public final class SunkenHope extends CardImpl {
 
 class SunkenHopeReturnToHandEffect extends OneShotEffect {
 
-    public SunkenHopeReturnToHandEffect() {
+    SunkenHopeReturnToHandEffect() {
         super(Outcome.ReturnToHand);
         staticText = "that player returns a creature they control to its owner's hand";
     }
 
-    public SunkenHopeReturnToHandEffect(final SunkenHopeReturnToHandEffect effect) {
+    private SunkenHopeReturnToHandEffect(final SunkenHopeReturnToHandEffect effect) {
         super(effect);
     }
 

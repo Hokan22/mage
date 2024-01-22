@@ -70,12 +70,12 @@ public final class LinSivviDefiantHero extends CardImpl {
 
 class LinSivviDefiantHeroEffect extends OneShotEffect {
 
-    public LinSivviDefiantHeroEffect() {
+    LinSivviDefiantHeroEffect() {
         super(Outcome.DrawCard);
         this.staticText = "Search your library for a Rebel permanent card with mana value X or less, put it onto the battlefield, then shuffle";
     }
 
-    public LinSivviDefiantHeroEffect(final LinSivviDefiantHeroEffect effect) {
+    private LinSivviDefiantHeroEffect(final LinSivviDefiantHeroEffect effect) {
         super(effect);
     }
 

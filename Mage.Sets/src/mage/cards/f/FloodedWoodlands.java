@@ -12,6 +12,7 @@ import mage.constants.CardType;
 import mage.constants.Duration;
 import mage.constants.Outcome;
 import mage.constants.Zone;
+import mage.filter.StaticFilters;
 import mage.filter.common.FilterControlledLandPermanent;
 import mage.game.Game;
 import mage.game.events.GameEvent;
@@ -47,11 +48,11 @@ class FloodedWoodlandsCostToAttackBlockEffect extends PayCostToAttackBlockEffect
 
     FloodedWoodlandsCostToAttackBlockEffect() {
         super(Duration.WhileOnBattlefield, Outcome.Detriment, RestrictType.ATTACK,
-                new SacrificeTargetCost(new TargetControlledPermanent(new FilterControlledLandPermanent("a land"))));
+                new SacrificeTargetCost(StaticFilters.FILTER_LAND));
         staticText = "Green creatures can't attack unless their controller sacrifices a land <i>(This cost is paid as attackers are declared.)</i>";
     }
 
-    FloodedWoodlandsCostToAttackBlockEffect(FloodedWoodlandsCostToAttackBlockEffect effect) {
+    private FloodedWoodlandsCostToAttackBlockEffect(final FloodedWoodlandsCostToAttackBlockEffect effect) {
         super(effect);
     }
 

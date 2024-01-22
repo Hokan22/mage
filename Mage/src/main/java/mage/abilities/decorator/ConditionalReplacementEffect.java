@@ -13,7 +13,6 @@ import mage.game.Game;
 import mage.game.events.GameEvent;
 
 /**
- *
  * @author LevelX2
  */
 public class ConditionalReplacementEffect extends ReplacementEffectImpl {
@@ -36,7 +35,7 @@ public class ConditionalReplacementEffect extends ReplacementEffectImpl {
         this.otherwiseEffect = otherwiseEffect;
     }
 
-    public ConditionalReplacementEffect(final ConditionalReplacementEffect effect) {
+    protected ConditionalReplacementEffect(final ConditionalReplacementEffect effect) {
         super(effect);
         this.effect = (ReplacementEffect) effect.effect.copy();
         if (effect.otherwiseEffect != null) {
@@ -86,11 +85,6 @@ public class ConditionalReplacementEffect extends ReplacementEffectImpl {
             this.discard();
         }
         return true;
-    }
-
-    @Override
-    public boolean apply(Game game, Ability source) {
-        return false;
     }
 
     @Override

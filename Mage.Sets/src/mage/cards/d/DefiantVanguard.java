@@ -79,7 +79,7 @@ class DefiantVanguardTriggeredAbility extends TriggeredAbilityImpl {
         super(Zone.BATTLEFIELD, effect);
     }
 
-    DefiantVanguardTriggeredAbility(final DefiantVanguardTriggeredAbility ability) {
+    private DefiantVanguardTriggeredAbility(final DefiantVanguardTriggeredAbility ability) {
         super(ability);
     }
 
@@ -116,12 +116,12 @@ class DefiantVanguardTriggeredAbility extends TriggeredAbilityImpl {
 
 class DefiantVanguardEffect extends OneShotEffect {
 
-    public DefiantVanguardEffect() {
+    DefiantVanguardEffect() {
         super(Outcome.DestroyPermanent);
         staticText = "destroy it and all creatures it blocked this turn";
     }
 
-    public DefiantVanguardEffect(final DefiantVanguardEffect effect) {
+    private DefiantVanguardEffect(final DefiantVanguardEffect effect) {
         super(effect);
     }
 

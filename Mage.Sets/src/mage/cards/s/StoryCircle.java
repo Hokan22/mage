@@ -47,7 +47,7 @@ public final class StoryCircle extends CardImpl {
 
 class StoryCircleEffect extends PreventNextDamageFromChosenSourceToYouEffect {
 
-    public StoryCircleEffect() {
+    StoryCircleEffect() {
         super(Duration.EndOfTurn);
         staticText = "The next time a source of your choice of the chosen color would deal damage to you this turn, prevent that damage.";
     }
@@ -59,7 +59,7 @@ class StoryCircleEffect extends PreventNextDamageFromChosenSourceToYouEffect {
         super.init(source, game);
     }
 
-    public StoryCircleEffect(StoryCircleEffect effect) {
+    private StoryCircleEffect(final StoryCircleEffect effect) {
         super(effect);
     }
 

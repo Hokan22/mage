@@ -61,12 +61,12 @@ public final class DisruptingShoal extends CardImpl {
 
 class DisruptingShoalCounterTargetEffect extends OneShotEffect {
 
-    public DisruptingShoalCounterTargetEffect() {
+    DisruptingShoalCounterTargetEffect() {
         super(Outcome.Detriment);
         this.staticText = "Counter target spell if its mana value is X";
     }
 
-    public DisruptingShoalCounterTargetEffect(final DisruptingShoalCounterTargetEffect effect) {
+    private DisruptingShoalCounterTargetEffect(final DisruptingShoalCounterTargetEffect effect) {
         super(effect);
     }
 

@@ -55,7 +55,7 @@ class SpitemareTriggeredAbility extends TriggeredAbilityImpl {
         setTriggerPhrase("Whenever {this} is dealt damage, ");
     }
 
-    public SpitemareTriggeredAbility(final SpitemareTriggeredAbility effect) {
+    private SpitemareTriggeredAbility(final SpitemareTriggeredAbility effect) {
         super(effect);
     }
 
@@ -81,12 +81,12 @@ class SpitemareTriggeredAbility extends TriggeredAbilityImpl {
 
 class SpitemareEffect extends OneShotEffect {
 
-    public SpitemareEffect() {
+    SpitemareEffect() {
         super(Outcome.Damage);
         staticText = "it deals that much damage to any target";
     }
 
-    public SpitemareEffect(final SpitemareEffect effect) {
+    private SpitemareEffect(final SpitemareEffect effect) {
         super(effect);
     }
 

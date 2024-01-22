@@ -61,12 +61,12 @@ public final class LesserWerewolf extends CardImpl {
 
 class LesserWerewolfEffect extends OneShotEffect {
 
-    public LesserWerewolfEffect() {
+    LesserWerewolfEffect() {
         super(Outcome.Detriment);
         this.staticText = "If {this}'s power is 1 or more, it gets -1/-0 until end of turn and put a -0/-1 counter on target creature blocking or blocked by {this}";
     }
 
-    public LesserWerewolfEffect(final LesserWerewolfEffect effect) {
+    private LesserWerewolfEffect(final LesserWerewolfEffect effect) {
         super(effect);
     }
 

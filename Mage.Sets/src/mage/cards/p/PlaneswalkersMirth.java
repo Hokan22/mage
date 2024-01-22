@@ -45,12 +45,12 @@ public final class PlaneswalkersMirth extends CardImpl {
 
 class PlaneswalkersMirthEffect extends OneShotEffect {
 
-    public PlaneswalkersMirthEffect() {
+    PlaneswalkersMirthEffect() {
         super(Outcome.Damage);
         staticText = "Target opponent reveals a card at random from their hand. You gain life equal to that card's mana value";
     }
 
-    public PlaneswalkersMirthEffect(final PlaneswalkersMirthEffect effect) {
+    private PlaneswalkersMirthEffect(final PlaneswalkersMirthEffect effect) {
         super(effect);
     }
 

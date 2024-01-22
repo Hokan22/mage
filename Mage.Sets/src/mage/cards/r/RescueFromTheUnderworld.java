@@ -57,7 +57,7 @@ public final class RescueFromTheUnderworld extends CardImpl {
         super(ownerId, setInfo, new CardType[]{CardType.INSTANT}, "{4}{B}");
 
         // As an additional cost to cast Rescue from the Underworld, sacrifice a creature.
-        this.getSpellAbility().addCost(new SacrificeTargetCost(new TargetControlledCreaturePermanent(1, 1, StaticFilters.FILTER_CONTROLLED_CREATURE_SHORT_TEXT, false)));
+        this.getSpellAbility().addCost(new SacrificeTargetCost(StaticFilters.FILTER_CONTROLLED_CREATURE_SHORT_TEXT));
 
         // Choose target creature card in your graveyard. Return that card and the sacrificed card to the battlefield under your control at the beginning of your next upkeep. Exile Rescue from the Underworld.
         this.getSpellAbility().addEffect(new RescueFromTheUnderworldTextEffect());
@@ -79,12 +79,12 @@ public final class RescueFromTheUnderworld extends CardImpl {
 
 class RescueFromTheUnderworldTextEffect extends OneShotEffect {
 
-    public RescueFromTheUnderworldTextEffect() {
+    RescueFromTheUnderworldTextEffect() {
         super(Outcome.Benefit);
         this.staticText = "Choose target creature card in your graveyard";
     }
 
-    public RescueFromTheUnderworldTextEffect(final RescueFromTheUnderworldTextEffect effect) {
+    private RescueFromTheUnderworldTextEffect(final RescueFromTheUnderworldTextEffect effect) {
         super(effect);
     }
 
@@ -109,7 +109,7 @@ class RescueFromTheUnderworldCreateDelayedTriggeredAbilityEffect extends OneShot
         this.staticText = "Return that card and the sacrificed card to the battlefield under your control at the beginning of your next upkeep";
     }
 
-    public RescueFromTheUnderworldCreateDelayedTriggeredAbilityEffect(final RescueFromTheUnderworldCreateDelayedTriggeredAbilityEffect effect) {
+    private RescueFromTheUnderworldCreateDelayedTriggeredAbilityEffect(final RescueFromTheUnderworldCreateDelayedTriggeredAbilityEffect effect) {
         super(effect);
         this.ability = effect.ability.copy();
     }
@@ -153,7 +153,7 @@ class RescueFromTheUnderworldDelayedTriggeredAbility extends DelayedTriggeredAbi
         super(effect);
     }
 
-    public RescueFromTheUnderworldDelayedTriggeredAbility(RescueFromTheUnderworldDelayedTriggeredAbility ability) {
+    private RescueFromTheUnderworldDelayedTriggeredAbility(final RescueFromTheUnderworldDelayedTriggeredAbility ability) {
         super(ability);
     }
 
@@ -180,11 +180,11 @@ class RescueFromTheUnderworldDelayedTriggeredAbility extends DelayedTriggeredAbi
 
 class RescueFromTheUnderworldReturnEffect extends OneShotEffect {
 
-    public RescueFromTheUnderworldReturnEffect() {
+    RescueFromTheUnderworldReturnEffect() {
         super(Outcome.PutCreatureInPlay);
     }
 
-    public RescueFromTheUnderworldReturnEffect(final RescueFromTheUnderworldReturnEffect effect) {
+    private RescueFromTheUnderworldReturnEffect(final RescueFromTheUnderworldReturnEffect effect) {
         super(effect);
     }
 

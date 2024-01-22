@@ -3,8 +3,8 @@ package mage.abilities.common;
 import mage.abilities.TriggeredAbilityImpl;
 import mage.abilities.effects.Effect;
 import mage.constants.Zone;
+import mage.filter.FilterPermanent;
 import mage.filter.StaticFilters;
-import mage.filter.common.FilterCreaturePermanent;
 import mage.game.Game;
 import mage.game.events.GameEvent;
 import mage.game.permanent.Permanent;
@@ -20,7 +20,10 @@ import java.util.stream.Collectors;
  */
 public class AttacksWithCreaturesTriggeredAbility extends TriggeredAbilityImpl {
 
-    private final FilterCreaturePermanent filter;
+    // retrieve the number of attackers in triggered effects with getValue
+    public static final String VALUEKEY_NUMBER_ATTACKERS = "number_attackers";
+
+    private final FilterPermanent filter;
     private final int minAttackers;
     private final boolean setTargetPointer;
 
@@ -28,20 +31,20 @@ public class AttacksWithCreaturesTriggeredAbility extends TriggeredAbilityImpl {
         this(effect, minAttackers, StaticFilters.FILTER_PERMANENT_CREATURES);
     }
 
-    public AttacksWithCreaturesTriggeredAbility(Effect effect, int minAttackers, FilterCreaturePermanent filter) {
+    public AttacksWithCreaturesTriggeredAbility(Effect effect, int minAttackers, FilterPermanent filter) {
         this(Zone.BATTLEFIELD, effect, minAttackers, filter);
     }
 
-    public AttacksWithCreaturesTriggeredAbility(Zone zone, Effect effect, int minAttackers, FilterCreaturePermanent filter) {
+    public AttacksWithCreaturesTriggeredAbility(Zone zone, Effect effect, int minAttackers, FilterPermanent filter) {
         this(zone, effect, minAttackers, filter, false);
     }
 
-    public AttacksWithCreaturesTriggeredAbility(Zone zone, Effect effect, int minAttackers, FilterCreaturePermanent filter, boolean setTargetPointer) {
+    public AttacksWithCreaturesTriggeredAbility(Zone zone, Effect effect, int minAttackers, FilterPermanent filter, boolean setTargetPointer) {
         super(zone, effect);
         this.filter = filter;
         this.minAttackers = minAttackers;
         this.setTargetPointer = setTargetPointer;
-        if (minAttackers == 1) {
+        if (minAttackers == 1 && StaticFilters.FILTER_PERMANENT_CREATURES.equals(filter)) {
             setTriggerPhrase("Whenever you attack, ");
         } else {
             StringBuilder sb = new StringBuilder("Whenever you attack with ");
@@ -53,7 +56,7 @@ public class AttacksWithCreaturesTriggeredAbility extends TriggeredAbilityImpl {
         }
     }
 
-    public AttacksWithCreaturesTriggeredAbility(final AttacksWithCreaturesTriggeredAbility ability) {
+    protected AttacksWithCreaturesTriggeredAbility(final AttacksWithCreaturesTriggeredAbility ability) {
         super(ability);
         this.filter = ability.filter;
         this.minAttackers = ability.minAttackers;
@@ -86,7 +89,7 @@ public class AttacksWithCreaturesTriggeredAbility extends TriggeredAbilityImpl {
         if (attackers.size() < minAttackers) {
             return false;
         }
-        getEffects().setValue("attackers", attackers.size());
+        getEffects().setValue(VALUEKEY_NUMBER_ATTACKERS, attackers.size());
         if (setTargetPointer) {
             getEffects().setTargetPointer(new FixedTargets(attackers, game));
         }

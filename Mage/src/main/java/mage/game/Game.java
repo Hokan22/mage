@@ -2,6 +2,7 @@ package mage.game;
 
 import mage.MageItem;
 import mage.MageObject;
+import mage.MageObjectReference;
 import mage.abilities.Ability;
 import mage.abilities.ActivatedAbility;
 import mage.abilities.DelayedTriggeredAbility;
@@ -39,6 +40,7 @@ import mage.players.PlayerList;
 import mage.players.Players;
 import mage.util.Copyable;
 import mage.util.MessageToClient;
+import mage.util.MultiAmountMessage;
 import mage.util.functions.CopyApplier;
 
 import java.io.Serializable;
@@ -110,13 +112,38 @@ public interface Game extends MageItem, Serializable, Copyable<Game> {
      */
     Permanent getPermanent(UUID permanentId);
 
+    /**
+     * Given the UUID of a permanent, this method returns the permanent. If the current game state does not contain
+     * a permanent with the given UUID, this method checks the last known information on the battlefield to look for it.
+     * <br>
+     * Warning: if the permanent has left the battlefield and then returned, this information might be wrong.
+     * Prefer usage of a MageObjectReference instead of only the UUID.
+     *
+     * @param permanentId - The UUID of the permanent
+     * @return permanent or permanent's LKI
+     */
     Permanent getPermanentOrLKIBattlefield(UUID permanentId);
+
+    /**
+     * Given a MageObjectReference to a permanent, this method returns the permanent. If the current game state does not
+     * contain that permanent, this method checks the last known information on the battlefield.
+     *
+     * @param permanentRef - A MOR to the permanent
+     * @return permanent or permanent's LKI
+     */
+    Permanent getPermanentOrLKIBattlefield(MageObjectReference permanentRef);
 
     Permanent getPermanentEntering(UUID permanentId);
 
     Map<UUID, Permanent> getPermanentsEntering();
 
     Map<Zone, Map<UUID, MageObject>> getLKI();
+    Map<MageObjectReference, Map<String, Object>> getPermanentCostsTags();
+
+    /**
+     * Take the source's Costs Tags and store it for later access through the MOR.
+     */
+    void storePermanentCostsTags(MageObjectReference permanentMOR, Ability source);
 
     // Result must be checked for null. Possible errors search pattern: (\S*) = game.getCard.+\n(?!.+\1 != null)
     Card getCard(UUID cardId);
@@ -206,6 +233,8 @@ public interface Game extends MageItem, Serializable, Copyable<Game> {
     /**
      * Id of the player the current turn it is.
      *
+     * Player can be under control of another player, so search a real GUI's controller by Player->getTurnControlledBy
+     *
      * @return
      */
     UUID getActivePlayerId();
@@ -264,6 +293,8 @@ public interface Game extends MageItem, Serializable, Copyable<Game> {
 
     Player getLosingPlayer();
 
+    int getTotalErrorsCount();
+
     //client event methods
     void addTableEventListener(Listener<TableEvent> listener);
 
@@ -299,7 +330,7 @@ public interface Game extends MageItem, Serializable, Copyable<Game> {
 
     void fireGetAmountEvent(UUID playerId, String message, int min, int max);
 
-    void fireGetMultiAmountEvent(UUID playerId, List<String> messages, int min, int max, Map<String, Serializable> options);
+    void fireGetMultiAmountEvent(UUID playerId, List<MultiAmountMessage> messages, int min, int max, Map<String, Serializable> options);
 
     void fireChoosePileEvent(UUID playerId, String message, List<? extends Card> pile1, List<? extends Card> pile2);
 
@@ -463,6 +494,13 @@ public interface Game extends MageItem, Serializable, Copyable<Game> {
 
     UUID fireReflexiveTriggeredAbility(ReflexiveTriggeredAbility reflexiveAbility, Ability source);
 
+    /**
+     * Inner game engine call to reset game objects to actual versions
+     * (reset all objects and apply all effects due layer system)
+     * <p>
+     * Warning, if you need to process object moves in the middle of the effect/ability
+     * then call game.getState().processAction(game) instead
+     */
     void applyEffects();
 
     boolean checkStateAndTriggered();
@@ -478,11 +516,28 @@ public interface Game extends MageItem, Serializable, Copyable<Game> {
     //game transaction methods
     void saveState(boolean bookmark);
 
+    /**
+     * Save current game state and return bookmark to it
+     *
+     * @return
+     */
     int bookmarkState();
 
     GameState restoreState(int bookmark, String context);
 
+    /**
+     * Remove selected bookmark and all newer bookmarks and game states
+     * Part of restore/rollback lifecycle
+     *
+     * @param bookmark
+     */
     void removeBookmark(int bookmark);
+
+    /**
+     * TODO: remove logic changed, must research each usage of removeBookmark and replace it with new code
+     * @param bookmark
+     */
+    void removeBookmark_v2(int bookmark);
 
     int getSavedStateSize();
 
@@ -500,7 +555,6 @@ public interface Game extends MageItem, Serializable, Copyable<Game> {
 
     // game cheats (for tests only)
     void cheat(UUID ownerId, Map<Zone, String> commands);
-
     void cheat(UUID ownerId, List<Card> library, List<Card> hand, List<PermanentCard> battlefield, List<Card> graveyard, List<Card> command);
 
     // controlling the behaviour of replacement effects while permanents entering the battlefield
@@ -518,6 +572,10 @@ public interface Game extends MageItem, Serializable, Copyable<Game> {
     int getPriorityTime();
 
     void setPriorityTime(int priorityTime);
+
+    int getBufferTime();
+
+    void setBufferTime(int bufferTime);
 
     UUID getStartingPlayerId();
 
@@ -559,9 +617,9 @@ public interface Game extends MageItem, Serializable, Copyable<Game> {
      */
     void takeInitiative(Ability source, UUID initiativeId);
 
-    int damagePlayerOrPlaneswalker(UUID playerOrWalker, int damage, UUID attackerId, Ability source, Game game, boolean combatDamage, boolean preventable);
+    int damagePlayerOrPermanent(UUID playerOrPermanent, int damage, UUID attackerId, Ability source, Game game, boolean combatDamage, boolean preventable);
 
-    int damagePlayerOrPlaneswalker(UUID playerOrWalker, int damage, UUID attackerId, Ability source, Game game, boolean combatDamage, boolean preventable, List<UUID> appliedEffects);
+    int damagePlayerOrPermanent(UUID playerOrPermanent, int damage, UUID attackerId, Ability source, Game game, boolean combatDamage, boolean preventable, List<UUID> appliedEffects);
 
     Mulligan getMulligan();
 

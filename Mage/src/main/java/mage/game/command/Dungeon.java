@@ -45,7 +45,6 @@ public class Dungeon extends CommandObjectImpl {
     }
 
     private static final List<CardType> cardTypes = Collections.unmodifiableList(Arrays.asList(CardType.DUNGEON));
-    private static final ObjectColor emptyColor = new ObjectColor();
     private static final ManaCosts<ManaCost> emptyCost = new ManaCostsImpl<>();
 
     private UUID controllerId;
@@ -60,7 +59,7 @@ public class Dungeon extends CommandObjectImpl {
         super(name);
     }
 
-    public Dungeon(final Dungeon dungeon) {
+    protected Dungeon(final Dungeon dungeon) {
         super(dungeon);
         this.frameStyle = dungeon.frameStyle;
         this.controllerId = dungeon.controllerId;
@@ -238,22 +237,27 @@ public class Dungeon extends CommandObjectImpl {
 
     @Override
     public ObjectColor getColor() {
-        return emptyColor;
+        return ObjectColor.COLORLESS;
     }
 
     @Override
     public ObjectColor getColor(Game game) {
-        return emptyColor;
+        return ObjectColor.COLORLESS;
     }
 
     @Override
     public ObjectColor getFrameColor(Game game) {
-        return emptyColor;
+        return ObjectColor.COLORLESS;
     }
 
     @Override
     public ManaCosts<ManaCost> getManaCost() {
         return emptyCost;
+    }
+
+    @Override
+    public void setManaCost(ManaCosts<ManaCost> costs) {
+        throw new UnsupportedOperationException("Unsupported operation");
     }
 
     @Override

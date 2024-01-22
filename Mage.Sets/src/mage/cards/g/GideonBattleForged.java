@@ -60,7 +60,7 @@ public final class GideonBattleForged extends CardImpl {
         this.addAbility(loyaltyAbility);
 
         // 0: Until end of turn, Gideon, Battle-Forged becomes a 4/4 Human Soldier creature with indestructible that's still a planeswalker. Prevent all damage that would be dealt to him this turn.
-        LoyaltyAbility ability3 = new LoyaltyAbility(new BecomesCreatureSourceEffect(new GideonBattleForgedToken(), "planeswalker", Duration.EndOfTurn), 0);
+        LoyaltyAbility ability3 = new LoyaltyAbility(new BecomesCreatureSourceEffect(new GideonBattleForgedToken(), CardType.PLANESWALKER, Duration.EndOfTurn), 0);
         effect = new PreventAllDamageToSourceEffect(Duration.EndOfTurn);
         effect.setText("Prevent all damage that would be dealt to him this turn");
         ability3.addEffect(effect);
@@ -90,7 +90,7 @@ class GideonBattleForgedToken extends TokenImpl {
         this.addAbility(IndestructibleAbility.getInstance());
     }
 
-    public GideonBattleForgedToken(final GideonBattleForgedToken token) {
+    private GideonBattleForgedToken(final GideonBattleForgedToken token) {
         super(token);
     }
 
@@ -108,7 +108,7 @@ class GideonBattleForgedAttacksIfAbleTargetEffect extends RequirementEffect {
         staticText = "Up to one target creature an opponent controls attacks {this} during its controller's next turn if able";
     }
 
-    public GideonBattleForgedAttacksIfAbleTargetEffect(final GideonBattleForgedAttacksIfAbleTargetEffect effect) {
+    private GideonBattleForgedAttacksIfAbleTargetEffect(final GideonBattleForgedAttacksIfAbleTargetEffect effect) {
         super(effect);
         this.targetPermanentReference = effect.targetPermanentReference;
     }

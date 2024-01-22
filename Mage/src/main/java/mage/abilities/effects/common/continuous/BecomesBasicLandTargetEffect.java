@@ -64,7 +64,7 @@ public class BecomesBasicLandTargetEffect extends ContinuousEffectImpl {
         this.loseOther = loseOther;
     }
 
-    public BecomesBasicLandTargetEffect(final BecomesBasicLandTargetEffect effect) {
+    protected BecomesBasicLandTargetEffect(final BecomesBasicLandTargetEffect effect) {
         super(effect);
         this.landTypes.addAll(effect.landTypes);
         this.chooseLandType = effect.chooseLandType;
@@ -155,12 +155,7 @@ public class BecomesBasicLandTargetEffect extends ContinuousEffectImpl {
         if (staticText != null && !staticText.isEmpty()) {
             return staticText;
         }
-        StringBuilder sb = new StringBuilder("target ");
-        if (!mode.getTargets().isEmpty()) {
-            sb.append(mode.getTargets().get(0).getTargetName());
-        } else {
-            sb.append("land");
-        }
+        StringBuilder sb = new StringBuilder(getTargetPointer().describeTargets(mode.getTargets(), "target land"));
         sb.append(" becomes ");
         if (chooseLandType) {
             sb.append("the basic land type of your choice");

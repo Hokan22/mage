@@ -58,12 +58,12 @@ public final class IllusionaryTerrain extends CardImpl {
 
 class IllusionaryTerrainEffect extends ContinuousEffectImpl {
 
-    public IllusionaryTerrainEffect() {
+    IllusionaryTerrainEffect() {
         super(Duration.WhileOnBattlefield, Outcome.Neutral);
         staticText = "Basic lands of the first chosen type are the second chosen type";
     }
 
-    public IllusionaryTerrainEffect(final IllusionaryTerrainEffect effect) {
+    private IllusionaryTerrainEffect(final IllusionaryTerrainEffect effect) {
         super(effect);
     }
 
@@ -141,7 +141,7 @@ class ChooseTwoBasicLandTypesEffect extends OneShotEffect {
         this.staticText = "choose two basic land types";
     }
 
-    public ChooseTwoBasicLandTypesEffect(final ChooseTwoBasicLandTypesEffect effect) {
+    private ChooseTwoBasicLandTypesEffect(final ChooseTwoBasicLandTypesEffect effect) {
         super(effect);
     }
 

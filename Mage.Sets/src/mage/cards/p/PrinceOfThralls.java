@@ -57,7 +57,7 @@ class PrinceOfThrallsTriggeredAbility extends TriggeredAbilityImpl {
         setTriggerPhrase("Whenever a permanent an opponent controls is put into a graveyard, ");
     }
 
-    PrinceOfThrallsTriggeredAbility(final PrinceOfThrallsTriggeredAbility ability) {
+    private PrinceOfThrallsTriggeredAbility(final PrinceOfThrallsTriggeredAbility ability) {
         super(ability);
     }
 
@@ -89,12 +89,12 @@ class PrinceOfThrallsTriggeredAbility extends TriggeredAbilityImpl {
 
 class PrinceOfThrallsEffect extends OneShotEffect {
 
-    public PrinceOfThrallsEffect() {
+    PrinceOfThrallsEffect() {
         super(Outcome.Neutral);
         this.staticText = "put that card onto the battlefield under your control unless that opponent pays 3 life";
     }
 
-    public PrinceOfThrallsEffect(final PrinceOfThrallsEffect effect) {
+    private PrinceOfThrallsEffect(final PrinceOfThrallsEffect effect) {
         super(effect);
     }
 

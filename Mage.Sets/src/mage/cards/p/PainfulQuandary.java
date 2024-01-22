@@ -44,12 +44,12 @@ public final class PainfulQuandary extends CardImpl {
 
 class PainfulQuandryEffect extends OneShotEffect {
 
-    public PainfulQuandryEffect() {
+    PainfulQuandryEffect() {
         super(Outcome.LoseLife);
         staticText = "that player loses 5 life unless they discard a card";
     }
 
-    public PainfulQuandryEffect(final PainfulQuandryEffect effect) {
+    private PainfulQuandryEffect(final PainfulQuandryEffect effect) {
         super(effect);
     }
 

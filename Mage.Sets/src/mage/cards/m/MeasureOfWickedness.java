@@ -68,12 +68,12 @@ public final class MeasureOfWickedness extends CardImpl {
 
 class MeasureOfWickednessControlSourceEffect extends ContinuousEffectImpl {
 
-    public MeasureOfWickednessControlSourceEffect() {
+    MeasureOfWickednessControlSourceEffect() {
         super(Duration.Custom, Layer.ControlChangingEffects_2, SubLayer.NA, Outcome.GainControl);
         staticText = "target opponent gains control of {this}";
     }
 
-    public MeasureOfWickednessControlSourceEffect(final MeasureOfWickednessControlSourceEffect effect) {
+    private MeasureOfWickednessControlSourceEffect(final MeasureOfWickednessControlSourceEffect effect) {
         super(effect);
     }
 

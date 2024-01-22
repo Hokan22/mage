@@ -56,12 +56,12 @@ public final class ApostlesBlessing extends CardImpl {
 
 class ApostlesBlessingEffect extends OneShotEffect {
 
-    public ApostlesBlessingEffect() {
+    ApostlesBlessingEffect() {
         super(Outcome.AddAbility);
         this.staticText = "Target artifact or creature you control gains protection from artifacts or from the color of your choice until end of turn";
     }
 
-    public ApostlesBlessingEffect(final ApostlesBlessingEffect effect) {
+    private ApostlesBlessingEffect(final ApostlesBlessingEffect effect) {
         super(effect);
     }
 

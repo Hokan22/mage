@@ -92,7 +92,7 @@ class DranaTheLastBloodchiefEffect extends OneShotEffect {
             return false;
         }
         TargetCard target = new TargetCardInGraveyard(filter);
-        target.setNotTarget(true);
+        target.withNotTarget(true);
         player.choose(outcome, controller.getGraveyard(), target, source, game);
         Card card = game.getCard(target.getFirstTarget());
         if (card == null) {
@@ -164,11 +164,6 @@ class DranaTheLastBloodchiefCounterEffect extends ReplacementEffectImpl {
     @Override
     public boolean applies(GameEvent event, Ability source, Game game) {
         return true;
-    }
-
-    @Override
-    public boolean apply(Game game, Ability source) {
-        return false;
     }
 
     @Override

@@ -76,12 +76,12 @@ public final class EchoMage extends LevelerCard {
 
 class EchoMageEffect extends OneShotEffect {
 
-    public EchoMageEffect() {
+    EchoMageEffect() {
         super(Outcome.Copy);
         this.staticText = "Copy target instant or sorcery spell twice. You may choose new targets for the copies";
     }
 
-    public EchoMageEffect(final EchoMageEffect effect) {
+    private EchoMageEffect(final EchoMageEffect effect) {
         super(effect);
     }
 

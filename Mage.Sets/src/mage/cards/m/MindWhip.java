@@ -64,12 +64,12 @@ public final class MindWhip extends CardImpl {
 
 class MindWhipEffect extends OneShotEffect {
 
-    public MindWhipEffect() {
+    MindWhipEffect() {
         super(Outcome.Neutral);
         staticText = "";
     }
 
-    public MindWhipEffect(final MindWhipEffect effect) {
+    private MindWhipEffect(final MindWhipEffect effect) {
         super(effect);
     }
 

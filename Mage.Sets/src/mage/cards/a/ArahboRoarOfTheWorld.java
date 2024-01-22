@@ -81,12 +81,12 @@ public final class ArahboRoarOfTheWorld extends CardImpl {
 
 class ArahboEffect extends OneShotEffect {
 
-    public ArahboEffect() {
+    ArahboEffect() {
         super(Outcome.Benefit);
         this.staticText = "it gains trample and gets +X/+X until end of turn, where X is its power";
     }
 
-    public ArahboEffect(final ArahboEffect effect) {
+    private ArahboEffect(final ArahboEffect effect) {
         super(effect);
     }
 

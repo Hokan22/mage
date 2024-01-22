@@ -68,7 +68,7 @@ class ExperimentKrajEffect extends ContinuousEffectImpl {
         staticText = "{this} has all activated abilities of each other creature with a +1/+1 counter on it";
     }
 
-    public ExperimentKrajEffect(final ExperimentKrajEffect effect) {
+    private ExperimentKrajEffect(final ExperimentKrajEffect effect) {
         super(effect);
     }
 
@@ -79,7 +79,7 @@ class ExperimentKrajEffect extends ContinuousEffectImpl {
             for (Permanent creature :game.getState().getBattlefield().getActivePermanents(filter, source.getControllerId(), source, game)){
                 for (Ability ability: creature.getAbilities()) {
                     if (ability instanceof ActivatedAbility) {
-                        perm.addAbility(ability, source.getSourceId(), game);
+                        perm.addAbility(ability, source.getSourceId(), game, true);
                     }
                 }
             }

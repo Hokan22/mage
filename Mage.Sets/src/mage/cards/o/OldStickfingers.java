@@ -49,12 +49,12 @@ public final class OldStickfingers extends CardImpl {
 
 class OldStickfingersEffect extends OneShotEffect {
 
-    public OldStickfingersEffect() {
+    OldStickfingersEffect() {
         super(Outcome.Discard);
         this.staticText = "reveal cards from the top of your library until you reveal X creature cards. Put all creature cards revealed this way into your graveyard, then put the rest on the bottom of your library in a random order";
     }
 
-    public OldStickfingersEffect(final OldStickfingersEffect effect) {
+    private OldStickfingersEffect(final OldStickfingersEffect effect) {
         super(effect);
     }
 

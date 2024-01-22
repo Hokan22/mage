@@ -32,8 +32,10 @@ public class PermanentToken extends PermanentImpl {
         this.power = new MageInt(token.getPower().getModifiedBaseValue());
         this.toughness = new MageInt(token.getToughness().getModifiedBaseValue());
         this.copyFromToken(this.token, game, false); // needed to have at this time (e.g. for subtypes for entersTheBattlefield replacement effects)
+
+        // if transformed on ETB
         if (this.token.isEntersTransformed()) {
-            TransformAbility.transformPermanent(this, this.token.getBackFace(), game, null);
+            TransformAbility.transformPermanent(this, game, null);
         }
 
         // token's ZCC must be synced with original token to keep abilities settings
@@ -43,7 +45,7 @@ public class PermanentToken extends PermanentImpl {
         }
     }
 
-    public PermanentToken(final PermanentToken permanent) {
+    protected PermanentToken(final PermanentToken permanent) {
         super(permanent);
         this.token = permanent.token.copy();
     }
@@ -89,7 +91,8 @@ public class PermanentToken extends PermanentImpl {
             // first time -> create ContinuousEffects only once
             // so sourceId must be null (keep triggered abilities forever?)
             for (Ability ability : token.getAbilities()) {
-                this.addAbility(ability, null, game);
+                //Don't add subabilities since the original token already has them in its abilities list
+                this.addAbility(ability, null, game, true);
             }
         }
         this.abilities.setControllerId(this.controllerId);
@@ -145,6 +148,10 @@ public class PermanentToken extends PermanentImpl {
 
     @Override
     public boolean isTransformable() {
+        // 701.28c
+        // If a spell or ability instructs a player to transform a permanent that
+        // isn’t represented by a transforming token or a transforming double-faced card,
+        // nothing happens.
         return token.getBackFace() != null;
     }
 

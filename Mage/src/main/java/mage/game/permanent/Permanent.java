@@ -75,6 +75,10 @@ public interface Permanent extends Card, Controllable {
 
     void setRenowned(boolean value);
 
+    boolean isPrototyped();
+
+    void setPrototyped(boolean value);
+
     int getClassLevel();
 
     /**
@@ -97,6 +101,10 @@ public interface Permanent extends Card, Controllable {
 
     boolean isProtectedBy(UUID playerId);
 
+    void setCanBeSacrificed(boolean canBeSacrificed);
+
+    boolean canBeSacrificed();
+
     void setCardNumber(String cid);
 
     void setExpansionSetCode(String expansionSetCode);
@@ -115,7 +123,7 @@ public interface Permanent extends Card, Controllable {
 
     int getAttachedToZoneChangeCounter();
 
-    void attachTo(UUID permanentId, Ability source, Game game);
+    void attachTo(UUID attachToObjectId, Ability source, Game game);
 
     void unattach(Game game);
 
@@ -214,6 +222,7 @@ public interface Permanent extends Card, Controllable {
      * @return can be null for exists abilities
      */
     Ability addAbility(Ability ability, UUID sourceId, Game game);
+    Ability addAbility(Ability ability, UUID sourceId, Game game, boolean fromExistingObject);
 
     void removeAllAbilities(UUID sourceId, Game game);
 
@@ -301,7 +310,15 @@ public interface Permanent extends Card, Controllable {
 
     boolean canBlockAny(Game game);
 
-    boolean canBeAttacked(UUID attackerId, UUID playerToAttack, Game game);
+    /**
+     * Fast check for attacking possibilities (is it possible to attack permanent/planeswalker/battle)
+     *
+     * @param attackerId creature to attack, can be null
+     * @param defendingPlayerId defending player
+     * @param game
+     * @return
+     */
+    boolean canBeAttacked(UUID attackerId, UUID defendingPlayerId, Game game);
 
     /**
      * Checks by restriction effects if the permanent can use activated
@@ -420,7 +437,9 @@ public interface Permanent extends Card, Controllable {
 
     boolean isManifested();
 
-    boolean isRingBearer(Game game);
+    boolean isRingBearer();
+
+    void setRingBearer(Game game, boolean value);
 
     @Override
     Permanent copy();

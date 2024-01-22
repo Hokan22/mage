@@ -7,6 +7,7 @@ import mage.constants.SetType;
 import mage.deck.Standard;
 import mage.game.events.Listener;
 
+import javax.swing.*;
 import java.util.*;
 
 /**
@@ -54,6 +55,7 @@ public final class ConstructedFormats {
                 }
             }
         };
+        // it's a static, so no needs to unsubscribe later
         ExpansionRepository.instance.subscribe(setsDbListener);
     }
 
@@ -76,12 +78,14 @@ public final class ConstructedFormats {
     }
 
     public static void ensureLists() {
-        if (underlyingSetCodesPerFormat.isEmpty()) {
+        if (underlyingSetCodesPerFormat.isEmpty()
+                || underlyingSetCodesPerFormat.values().stream().findFirst().get().isEmpty()) {
             buildLists();
         }
     }
 
     public static void buildLists() {
+        underlyingSetCodesPerFormat.clear();
         underlyingSetCodesPerFormat.put(STANDARD, new ArrayList<>());
         underlyingSetCodesPerFormat.put(EXTENDED, new ArrayList<>());
         underlyingSetCodesPerFormat.put(FRONTIER, new ArrayList<>());

@@ -85,7 +85,7 @@ class CarthTheLionTriggeredAbility extends TriggeredAbilityImpl {
             ZoneChangeEvent zEvent = (ZoneChangeEvent) event;
             if (zEvent.isDiesEvent()) {
                 Permanent permanent = game.getPermanentOrLKIBattlefield(zEvent.getTargetId());
-                return permanent != null && permanent.isPlaneswalker();
+                return permanent != null && permanent.isPlaneswalker(game);
             }
         }
         return false;
@@ -94,7 +94,7 @@ class CarthTheLionTriggeredAbility extends TriggeredAbilityImpl {
 
 class CarthTheLionLoyaltyCostEffect extends CostModificationEffectImpl {
 
-    public CarthTheLionLoyaltyCostEffect() {
+    CarthTheLionLoyaltyCostEffect() {
         super(Duration.WhileOnBattlefield, Outcome.Benefit, CostModificationType.INCREASE_COST);
         this.staticText = "Planeswalkers' loyalty abilities you activate cost an additional +1 to activate";
     }

@@ -87,7 +87,7 @@ class EaterOfVirtueExileEffect extends OneShotEffect {
         this.staticText = "exile it";
     }
 
-    EaterOfVirtueExileEffect(final EaterOfVirtueExileEffect effect) {
+    private EaterOfVirtueExileEffect(final EaterOfVirtueExileEffect effect) {
         super(effect);
     }
 
@@ -114,12 +114,12 @@ class EaterOfVirtueExileEffect extends OneShotEffect {
 
 class EaterOfVirtueGainAbilityAttachedEffect extends ContinuousEffectImpl {
 
-    public EaterOfVirtueGainAbilityAttachedEffect() {
+    EaterOfVirtueGainAbilityAttachedEffect() {
         super(Duration.WhileOnBattlefield, Layer.AbilityAddingRemovingEffects_6, SubLayer.NA, Outcome.AddAbility);
         staticText = "As long as a card exiled with Eater of Virtue has flying, equipped creature has flying. The same is true for first strike, double strike, deathtouch, haste, hexproof, indestructible, lifelink, menace, protection, reach, trample, and vigilance";
     }
 
-    public EaterOfVirtueGainAbilityAttachedEffect(final EaterOfVirtueGainAbilityAttachedEffect effect) {
+    private EaterOfVirtueGainAbilityAttachedEffect(final EaterOfVirtueGainAbilityAttachedEffect effect) {
         super(effect);
     }
 
